@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>大阪・京都 七日</title>
 <style>
-:root{--bg:#EAF3FA;--ink:#2B2B2B;--org:#F5A623;--orgl:#FFF0CF;--sub:#66727F;--line:#C8D6E3;--soft:#FFF0CF;--red:#D9482B;--fs:17px;--stick:60px}
+:root{--a1:#FF9482;--a2:#D3382F;--bg:#EAF3FA;--ink:#2B2B2B;--org:#F5A623;--orgl:#FFF0CF;--sub:#66727F;--line:#C8D6E3;--soft:#FFF0CF;--red:#D9482B;--fs:17px;--stick:60px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:var(--fs)}
 html.big{--fs:20px}
@@ -55,7 +55,9 @@ label{display:block;font-size:.82rem;color:var(--sub);margin:1em 0 .25em;font-we
 .infobar{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:2px dashed var(--ink);border-bottom:2px dashed var(--ink);padding:.5em 0;margin-top:6px;flex-wrap:wrap}
 .infobar .cnt{font-size:.95rem;font-weight:700}
 .infobar .cnt b{font-size:1.4em;background:var(--org);border:2px solid var(--ink);border-radius:10px;padding:0 .35em;margin:0 .15em}
-.infobar .btns{display:flex;gap:6px;align-items:center}
+.infobar .btns{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.infobar button,.top2 button{white-space:nowrap}
+@media(max-width:360px){.infobar .btns .small{width:100%;text-align:right}.infobar button,.top2 button{padding:.1em .6em;font-size:.8rem}.ttl h1{font-size:2rem}}
 .infobar button,.top2 button{min-height:36px;font-size:.85rem;padding:.1em .8em}
 button.on{background:var(--org);font-weight:700}
 .banner{background:var(--orgl);border:2px dashed var(--ink);border-radius:14px;padding:.6em .9em;margin-top:10px;font-size:.86rem}
@@ -130,27 +132,61 @@ nav .bd{display:inline-block;min-width:1.4em;margin-left:.3em;font-size:.72rem;b
 #viewer img{max-width:100%;height:auto;display:block;margin:0 auto}
 #viewer a.lk{display:inline-block;padding:.7em 1.4em;background:var(--org);color:var(--ink);border:2px solid var(--ink);text-decoration:none;border-radius:999px;font-weight:700}
 
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(98px + env(safe-area-inset-bottom));z-index:70;background:var(--ink);color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;display:none;max-width:92vw}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(168px + env(safe-area-inset-bottom));z-index:70;background:var(--ink);color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;display:none;max-width:92vw}
 #toast.show{display:block}
 /* ===== 聖誕：雪人 + 聖誕老人 ===== */
 .sm{display:inline-block;line-height:0;transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite}
-.sm .arm{transform-origin:35px 40px;animation:wave 1.1s ease-in-out infinite}
+.sm .arm{transform-origin:46px 47px;animation:wave 1.1s ease-in-out infinite}
+.cu{overflow:visible;vertical-align:middle;flex:none}
 @keyframes bob{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg) translateY(-3px)}}
 @keyframes wave{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
 body.calm .sm,body.calm .sm .arm,body.calm #santa .bob{animation:none}
 @media(prefers-reduced-motion:reduce){.sm,.sm .arm,#santa .bob{animation:none}}
 .xmas{text-align:center;margin-top:30px;padding:8px 0 4px}
-.xmas .row{display:flex;justify-content:center;align-items:flex-end;gap:14px}
+.xmas .row{display:flex;justify-content:center;align-items:flex-end;gap:6px}
 .xmas .hand{margin-top:6px;font-size:1.05rem}
 .xtag{background:#fff;border:2px solid var(--ink);border-radius:999px;padding:0 .6em;font-size:.8rem;font-weight:700;white-space:nowrap}
-#santa{position:fixed;left:0;top:120px;z-index:16;pointer-events:none;width:220px;will-change:transform}
+#santa{position:fixed;left:0;top:120px;z-index:16;pointer-events:none;width:230px;will-change:transform}
 #santa .bob{animation:fly 1.6s ease-in-out infinite;line-height:0}
 @keyframes fly{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg)}}
 #santa .ho{position:absolute;left:46px;top:-18px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:0 .55em;font-size:.82rem;font-weight:700;white-space:nowrap}
+/* ===== 選單上的小人 ===== */
+.treebtn{border:0;background:none;padding:0;min-height:0;line-height:0;cursor:pointer}
+.treebtn:active{background:none;transform:scale(.94)}
+.tw{animation:tw 1.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.2}}
+body.calm .tw{animation:none}
+.walker{position:fixed;left:0;top:auto;bottom:calc(76px + env(safe-area-inset-bottom));z-index:31;pointer-events:none;will-change:transform}
+.wbtn{pointer-events:auto;border:0;background:none;padding:0;min-height:0;line-height:0;cursor:pointer;display:block;transform-origin:50% 100%}
+.wbtn:active{background:none}
+.stp{display:inline-block;line-height:0;transform-origin:50% 100%;animation:step .5s ease-in-out infinite}
+.walker .sm{animation:none}
+.walker.stand .stp{animation:none}
+@keyframes step{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-4px) rotate(4deg)}}
+.wsay{position:fixed;z-index:67;bottom:calc(122px + env(safe-area-inset-bottom));width:max-content;max-width:210px;background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:.35em .85em;font-size:.92rem;font-weight:700;line-height:1.45;box-shadow:3px 3px 0 var(--org);opacity:0;transform:translateY(6px) scale(.9);transition:opacity .2s,transform .2s;pointer-events:none}
+.wsay.show{opacity:1;transform:none}
+.wsay::after{content:"";position:absolute;left:var(--tail,50%);bottom:-8px;width:11px;height:11px;background:#fff;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
+.pgift{position:fixed;z-index:66;pointer-events:none;line-height:0;width:28px;height:28px}
+.wsay,#santa .ho,.xmas .hand{font-family:inherit;font-weight:700}
 @media(min-width:760px){html{--fs:18px}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="gSnow" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#fff"/><stop offset="1" stop-color="#C9DDF0"/></radialGradient>
+<radialGradient id="gRed" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FF9482"/><stop offset="1" stop-color="#D3382F"/></radialGradient>
+<radialGradient id="gAcc" cx=".35" cy=".3" r=".9"><stop offset="0" style="stop-color:var(--a1)"/><stop offset="1" style="stop-color:var(--a2)"/></radialGradient>
+<radialGradient id="gGreen" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#78DDA2"/><stop offset="1" stop-color="#2A9560"/></radialGradient>
+<radialGradient id="gBrown" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#E8B67E"/><stop offset="1" stop-color="#A8683A"/></radialGradient>
+<radialGradient id="gGold" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FFEE9E"/><stop offset="1" stop-color="#F2A21E"/></radialGradient>
+<radialGradient id="gBlue" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#96D3F8"/><stop offset="1" stop-color="#2E8FD6"/></radialGradient>
+<radialGradient id="gPurple" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#D5B2F4"/><stop offset="1" stop-color="#8A58CF"/></radialGradient>
+<radialGradient id="gSkin" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#FFF0E0"/><stop offset="1" stop-color="#FFC8A0"/></radialGradient>
+<radialGradient id="gTan" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#F0D0A0"/><stop offset="1" stop-color="#BE8E52"/></radialGradient>
+<radialGradient id="gCarrot" cx=".3" cy=".3" r=".9"><stop offset="0" stop-color="#FFC060"/><stop offset="1" stop-color="#EE7418"/></radialGradient>
+<radialGradient id="gNavy" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#6F8BB0"/><stop offset="1" stop-color="#2F4468"/></radialGradient>
+<radialGradient id="gGinger" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#E8AE6C"/><stop offset="1" stop-color="#B2692F"/></radialGradient>
+</defs></svg>
 <div id="head"></div>
 <div id="stick" class="stick"></div>
 <main id="app" class="wrap"></main>
@@ -190,28 +226,194 @@ const ICONS = {
   note:`<path class="w" d="M7 6 H37 V42 H7Z"/><path d="M13 15 H31 M13 23 H31 M13 31 H23"/><path class="o" d="M29 41 L40 23 L45 26 L34 44 L27 45Z"/>`,
 };
 const ic = (n, sz = 24) => `<svg class="ic" viewBox="0 0 48 48" width="${sz}" height="${sz}" aria-hidden="true">${ICONS[n]}</svg>`;
-const snowman = (sz = 56, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="ic" viewBox="-2 -2 54 62" width="${sz}" height="${Math.round(sz*62/54)}" aria-hidden="true">
-<path d="M13 40 L3 30 M3 30 L1 25 M3 30 L-1 31"/>
-<g class="arm" style="animation-delay:${delay}s"><path d="M35 40 L45 29 M45 29 L47 24 M45 29 L49 30"/></g>
-<circle cx="24" cy="44" r="12" fill="#fff"/><circle cx="24" cy="22" r="9.5" fill="#fff"/>
-<path d="M14.5 17 Q15 3 31 5 L34 17Z" fill="#D9482B"/><ellipse cx="24.5" cy="17" rx="11" ry="3" fill="#fff"/><circle cx="31.5" cy="4.5" r="3.2" fill="#fff"/>
-<circle cx="20" cy="22" r="1.2" fill="#2B2B2B"/><circle cx="28" cy="22" r="1.2" fill="#2B2B2B"/>
-<path d="M24 25 L33 27 L24 28Z" fill="#F5A623"/>
-<path d="M13 31 Q24 38 35 31 L35 35 Q24 42 13 35Z" fill="#D9482B"/>
-<path d="M30 38 L32 49 L38 47 L35 36" fill="#D9482B"/>
-<circle cx="24" cy="44" r="1.3" fill="#2B2B2B"/><circle cx="24" cy="50" r="1.3" fill="#2B2B2B"/>
+const SK = 'stroke="#5B3A33" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"';
+const SHADOW = (cx, cy, rx) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="2.6" fill="rgba(60,80,110,.16)"/>`;
+const snowman = (sz = 56, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="-4 -2 68 76" width="${sz}" height="${Math.round(sz*76/68)}" aria-hidden="true">
+${SHADOW(30,69.5,19)}
+<g ${SK}>
+<path d="M14 47 L3 39 M3 39 L1 33 M3 39 L-2 40" fill="none" stroke="#7A4A2B" stroke-width="2.2"/>
+<g class="arm" style="animation-delay:${delay}s"><path d="M46 47 L57 38 M57 38 L59 32 M57 38 L62 39" fill="none" stroke="#7A4A2B" stroke-width="2.2"/></g>
+<circle cx="30" cy="51" r="17" fill="url(#gSnow)"/>
+<circle cx="30" cy="22" r="13.5" fill="url(#gSnow)"/>
+<path d="M17.5 35 Q30 43 42.5 35 L43 40.5 Q30 48.5 17 40.5Z" fill="url(#gGreen)"/>
+<path d="M37 43 L39 58 Q43 60 46.5 56.5 L43 41" fill="url(#gGreen)"/>
+<path d="M38 50 L43.5 49 M38.6 54 L44 52.8" stroke="#fff" stroke-width="1.4" fill="none"/>
+<path d="M17 19.5 C16 7 23 2 30 2 C37 2 44 7 43 19.5Z" fill="url(#gAcc)"/>
+<rect x="15" y="16.5" width="30" height="7.5" rx="3.75" fill="url(#gSnow)"/>
+<circle cx="30" cy="1.8" r="4" fill="url(#gSnow)"/>
+</g>
+<circle cx="24.5" cy="27" r="1.9" fill="#3A2A25"/><circle cx="35.5" cy="27" r="1.9" fill="#3A2A25"/>
+<circle cx="25.1" cy="26.3" r=".7" fill="#fff"/><circle cx="36.1" cy="26.3" r=".7" fill="#fff"/>
+<ellipse cx="20.4" cy="31" rx="2.8" ry="1.8" fill="#FF8FA0" opacity=".55"/><ellipse cx="39.6" cy="31" rx="2.8" ry="1.8" fill="#FF8FA0" opacity=".55"/>
+<path d="M28.4 29.2 Q30 28.2 31.6 29.2 L30 33Z" fill="url(#gCarrot)" stroke="#5B3A33" stroke-width="1" stroke-linejoin="round"/>
+<path d="M27 33.6 Q30 36 33 33.6" fill="none" stroke="#5B3A33" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="30" cy="53" r="1.8" fill="#5B3A33"/><circle cx="30" cy="60" r="1.8" fill="#5B3A33"/>
+<path d="M20 41 Q22 39 24 41" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".0"/>
 </svg></span>`;
-const deer = dx => `<g transform="translate(${dx},0)"><path d="M10 44 L2 56 M17 45 L12 58 M31 45 L40 54 M37 42 L48 49"/><path d="M8 36 Q3 31 6 26"/><ellipse cx="24" cy="38" rx="16" ry="8" fill="#C98A4B"/><path d="M34 34 L43 25" stroke-width="5"/><circle cx="47" cy="22" r="6" fill="#C98A4B"/><circle cx="52" cy="24" r="2.6" fill="#D9482B"/><circle cx="46" cy="20" r="1" fill="#2B2B2B"/><path d="M44 17 L42 7 M42 7 L38 4 M42 11 L38 10 M48 16 L50 6 M50 6 L54 3"/></g>`;
-const SANTA_SVG = `<svg class="ic" viewBox="0 0 262 70" width="220" height="59" aria-hidden="true">
-<path d="M142 40 H158 M176 40 H208"/>
-<path d="M62 60 H132 Q144 60 144 48 M80 60 V50 M116 60 V50"/>
-<path d="M70 38 Q54 24 70 15 Q88 18 86 36Z" fill="#F5A623"/>
-<path d="M66 34 H138 Q142 34 144 27 Q144 52 120 52 H84 Q66 52 66 34Z" fill="#D9482B"/>
-<path d="M96 34 Q96 21 107 21 Q118 21 118 34Z" fill="#D9482B"/>
-<circle cx="107" cy="16" r="7" fill="#FFE0C2"/><path d="M100 19 Q107 34 114 19Z" fill="#fff"/>
-<path d="M99.5 14 Q100 1 113 4 L114 14Z" fill="#D9482B"/><ellipse cx="107" cy="14" rx="8.5" ry="2.8" fill="#fff"/><circle cx="113.5" cy="4" r="3" fill="#fff"/>
-<circle cx="108" cy="15.5" r="1" fill="#2B2B2B"/>
-${deer(150)}${deer(204)}
+
+const elf = (sz = 44, delay = 0, alt = false) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<ellipse cx="19" cy="65" rx="6.5" ry="3.4" fill="url(#${alt?'gAcc':'gGreen'})"/><ellipse cx="41" cy="65" rx="6.5" ry="3.4" fill="url(#${alt?'gAcc':'gGreen'})"/>
+<ellipse cx="30" cy="43" rx="19" ry="21" fill="url(#${alt?'gGreen':'gAcc'})"/>
+<circle cx="10.5" cy="46" r="4.2" fill="url(#gSkin)"/><circle cx="49.5" cy="46" r="4.2" fill="url(#gSkin)"/>
+<path d="M13 32 L5 28 L11.5 40Z" fill="url(#gSkin)"/><path d="M47 32 L55 28 L48.5 40Z" fill="url(#gSkin)"/>
+<path d="M12 56 Q30 62 48 56" fill="none" stroke="#5B3A33" stroke-width="3.4"/>
+<rect x="26.5" y="55.4" width="7" height="5.4" rx="1.2" fill="url(#gGold)" stroke-width="1.2"/>
+<path d="M13 31 C13 21 24 13 40 9 C42.4 8.4 44 10 43.6 12 C44 18 46 25 47 31 Q30 37 13 31Z" fill="url(#${alt?'gAcc':'gGreen'})"/>
+<ellipse cx="30" cy="31.5" rx="18" ry="4.6" fill="url(#gSnow)"/>
+<circle cx="43" cy="8" r="4.4" fill="url(#gSnow)"/>
+</g>
+<circle cx="23" cy="42" r="2.1" fill="#3A2A25"/><circle cx="37" cy="42" r="2.1" fill="#3A2A25"/>
+<circle cx="23.7" cy="41.3" r=".75" fill="#fff"/><circle cx="37.7" cy="41.3" r=".75" fill="#fff"/>
+<ellipse cx="17.6" cy="47" rx="3" ry="1.9" fill="#FFB0A0" opacity=".7"/><ellipse cx="42.4" cy="47" rx="3" ry="1.9" fill="#FFB0A0" opacity=".7"/>
+<path d="M26.6 47 Q30 50.6 33.4 47" fill="none" stroke="#5B3A33" stroke-width="1.4" stroke-linecap="round"/>
+<ellipse cx="22" cy="31.4" rx="5" ry="1.4" fill="#fff" opacity=".6"/>
+</svg></span>`;
+
+const reindeer = (sz = 44, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<path d="M20 22 C17 14 14 10 10 9 M17.4 14.6 C14 14.8 11.4 13.6 9 11.4 M40 22 C43 14 46 10 50 9 M42.6 14.6 C46 14.8 48.6 13.6 51 11.4" fill="none" stroke="#8B5A33" stroke-width="3.2"/>
+<ellipse cx="12" cy="27" rx="5.6" ry="3.2" transform="rotate(-28 12 27)" fill="url(#gBrown)"/><ellipse cx="48" cy="27" rx="5.6" ry="3.2" transform="rotate(28 48 27)" fill="url(#gBrown)"/>
+<ellipse cx="19" cy="65" rx="6.5" ry="3.4" fill="#7A4A2B"/><ellipse cx="41" cy="65" rx="6.5" ry="3.4" fill="#7A4A2B"/>
+<ellipse cx="30" cy="43" rx="19" ry="21" fill="url(#gBrown)"/>
+<circle cx="10.5" cy="47" r="4.2" fill="url(#gBrown)"/><circle cx="49.5" cy="47" r="4.2" fill="url(#gBrown)"/>
+<ellipse cx="30" cy="48" rx="12.5" ry="11" fill="#F7E3C8" stroke="none"/>
+<path d="M13 56 Q30 64 47 56 L46 61 Q30 68 14 61Z" fill="url(#gAcc)"/>
+</g>
+<circle cx="23" cy="40" r="2.1" fill="#3A2A25"/><circle cx="37" cy="40" r="2.1" fill="#3A2A25"/>
+<circle cx="23.7" cy="39.3" r=".75" fill="#fff"/><circle cx="37.7" cy="39.3" r=".75" fill="#fff"/>
+<ellipse cx="17" cy="45" rx="3" ry="1.9" fill="#FF9A9A" opacity=".6"/><ellipse cx="43" cy="45" rx="3" ry="1.9" fill="#FF9A9A" opacity=".6"/>
+<circle cx="30" cy="46" r="4.4" fill="url(#gRed)" stroke="#5B3A33" stroke-width="1.3"/><circle cx="28.6" cy="44.6" r="1.3" fill="#fff" opacity=".85"/>
+<path d="M26.4 51.4 Q30 54.6 33.6 51.4" fill="none" stroke="#5B3A33" stroke-width="1.4" stroke-linecap="round"/>
+</svg></span>`;
+
+const penguin = (sz = 44, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<ellipse cx="21.5" cy="65" rx="7" ry="3.4" fill="url(#gCarrot)"/><ellipse cx="38.5" cy="65" rx="7" ry="3.4" fill="url(#gCarrot)"/>
+<ellipse cx="9.5" cy="46" rx="5" ry="10" transform="rotate(14 9.5 46)" fill="url(#gNavy)"/><ellipse cx="50.5" cy="46" rx="5" ry="10" transform="rotate(-14 50.5 46)" fill="url(#gNavy)"/>
+<ellipse cx="30" cy="42" rx="19" ry="22" fill="url(#gNavy)"/>
+<ellipse cx="30" cy="46.5" rx="13" ry="16.5" fill="url(#gSnow)" stroke-width="1.2"/>
+<path d="M15 26 C14 10 22 3 30 3 C38 3 46 10 45 26Z" fill="url(#gAcc)"/>
+<ellipse cx="30" cy="26" rx="16" ry="4.2" fill="url(#gSnow)"/>
+<circle cx="30" cy="3" r="4" fill="url(#gSnow)"/>
+</g>
+<circle cx="24" cy="35" r="2.1" fill="#3A2A25"/><circle cx="36" cy="35" r="2.1" fill="#3A2A25"/>
+<circle cx="24.7" cy="34.3" r=".75" fill="#fff"/><circle cx="36.7" cy="34.3" r=".75" fill="#fff"/>
+<ellipse cx="19.4" cy="39.6" rx="3" ry="1.9" fill="#FF9AA8" opacity=".6"/><ellipse cx="40.6" cy="39.6" rx="3" ry="1.9" fill="#FF9AA8" opacity=".6"/>
+<path d="M26.4 37.8 Q30 35.6 33.6 37.8 Q30 43.4 26.4 37.8Z" fill="url(#gCarrot)" stroke="#5B3A33" stroke-width="1.2" stroke-linejoin="round"/>
+</svg></span>`;
+
+const ginger = (sz = 44, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<ellipse cx="21" cy="64" rx="7" ry="4.4" fill="url(#gGinger)"/><ellipse cx="39" cy="64" rx="7" ry="4.4" fill="url(#gGinger)"/>
+<ellipse cx="9.5" cy="51" rx="7.4" ry="4.6" transform="rotate(-28 9.5 51)" fill="url(#gGinger)"/><ellipse cx="50.5" cy="51" rx="7.4" ry="4.6" transform="rotate(28 50.5 51)" fill="url(#gGinger)"/>
+<ellipse cx="30" cy="52" rx="15" ry="13" fill="url(#gGinger)"/>
+<circle cx="30" cy="27" r="19" fill="url(#gGinger)"/>
+</g>
+<g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 53 Q6 49 8 53 Q10 57 12 53"/><path d="M48 53 Q50 57 52 53 Q54 49 56 53"/><path d="M16 66 Q18.5 62.6 21 66 Q23.5 69 26 66"/><path d="M34 66 Q36.5 62.6 39 66 Q41.5 69 44 66"/>
+<path d="M19 12 Q24.5 6.6 30 12 Q35.5 6.6 41 12"/>
+</g>
+<g stroke="#5B3A33" stroke-width="1.2"><circle cx="30" cy="50" r="2.9" fill="url(#gRed)"/><circle cx="30" cy="58" r="2.9" fill="url(#gGreen)"/></g>
+<g ${SK}><path d="M30 41 L19 36.4 Q17 41 19 46 Z" fill="url(#gAcc)"/><path d="M30 41 L41 36.4 Q43 41 41 46 Z" fill="url(#gAcc)"/><circle cx="30" cy="41" r="3.4" fill="url(#gAcc)"/></g>
+<circle cx="23.5" cy="25" r="2.2" fill="#3A2A25"/><circle cx="36.5" cy="25" r="2.2" fill="#3A2A25"/>
+<circle cx="24.2" cy="24.3" r=".8" fill="#fff"/><circle cx="37.2" cy="24.3" r=".8" fill="#fff"/>
+<ellipse cx="18" cy="30.4" rx="3.4" ry="2.1" fill="#FF8FA0" opacity=".65"/><ellipse cx="42" cy="30.4" rx="3.4" ry="2.1" fill="#FF8FA0" opacity=".65"/>
+<path d="M25.4 30.6 Q30 35.6 34.6 30.6" fill="none" stroke="#5B3A33" stroke-width="1.6" stroke-linecap="round"/>
+</svg></span>`;
+
+const bear = (sz = 44, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<circle cx="14" cy="21" r="8.6" fill="url(#gSnow)"/><circle cx="46" cy="21" r="8.6" fill="url(#gSnow)"/>
+<circle cx="14" cy="21.4" r="4.4" fill="#FFC9D2" stroke="none"/><circle cx="46" cy="21.4" r="4.4" fill="#FFC9D2" stroke="none"/>
+<ellipse cx="19" cy="65" rx="6.5" ry="3.4" fill="url(#gSnow)"/><ellipse cx="41" cy="65" rx="6.5" ry="3.4" fill="url(#gSnow)"/>
+<ellipse cx="30" cy="43" rx="19" ry="21" fill="url(#gSnow)"/>
+<circle cx="10.5" cy="47" r="4.2" fill="url(#gSnow)"/><circle cx="49.5" cy="47" r="4.2" fill="url(#gSnow)"/>
+<ellipse cx="30" cy="47.6" rx="9.8" ry="8" fill="#fff" stroke-width="1.2"/>
+<path d="M13 56 Q30 64 47 56 L46 61 Q30 68 14 61Z" fill="url(#gAcc)"/>
+</g>
+<circle cx="22.4" cy="39.6" r="2.1" fill="#3A2A25"/><circle cx="37.6" cy="39.6" r="2.1" fill="#3A2A25"/>
+<circle cx="23.1" cy="38.9" r=".75" fill="#fff"/><circle cx="38.3" cy="38.9" r=".75" fill="#fff"/>
+<ellipse cx="16.4" cy="45" rx="3" ry="1.9" fill="#FF9AA8" opacity=".6"/><ellipse cx="43.6" cy="45" rx="3" ry="1.9" fill="#FF9AA8" opacity=".6"/>
+<ellipse cx="30" cy="44.6" rx="3.6" ry="2.6" fill="#4A3530"/><ellipse cx="29" cy="43.8" rx="1.1" ry=".7" fill="#fff" opacity=".7"/>
+<path d="M30 47 V49.4 M26.6 50.2 Q30 53.2 33.4 50.2" fill="none" stroke="#5B3A33" stroke-width="1.4" stroke-linecap="round"/>
+</svg></span>`;
+
+const minisanta = (sz = 44, delay = 0) => `<span class="sm" style="animation-delay:${delay}s"><svg class="cu" viewBox="0 0 60 70" width="${sz}" height="${Math.round(sz*70/60)}" aria-hidden="true">
+${SHADOW(30,67.5,17)}
+<g ${SK}>
+<ellipse cx="20" cy="65" rx="7" ry="3.4" fill="#5A4640"/><ellipse cx="40" cy="65" rx="7" ry="3.4" fill="#5A4640"/>
+<ellipse cx="30" cy="47" rx="19" ry="19" fill="url(#gRed)"/>
+<path d="M11.4 51 Q30 60 48.6 51 L48 57 Q30 66 12 57Z" fill="#4A3530"/>
+<rect x="25.4" y="54.2" width="9.2" height="7.4" rx="1.6" fill="url(#gGold)" stroke-width="1.2"/>
+<circle cx="10.5" cy="48" r="4.2" fill="url(#gSnow)"/><circle cx="49.5" cy="48" r="4.2" fill="url(#gSnow)"/>
+<circle cx="30" cy="30" r="12.6" fill="url(#gSkin)"/>
+<path d="M17 31 Q16 51 30 51 Q44 51 43 31 Q37 38.6 30 37.6 Q23 38.6 17 31Z" fill="url(#gSnow)"/>
+<path d="M16 28 C14 10 23 3 32 3 C38 3 44 8 44 28Z" fill="url(#gRed)"/>
+<ellipse cx="30" cy="28.6" rx="15.2" ry="4.2" fill="url(#gSnow)"/>
+<circle cx="43.4" cy="9" r="4.3" fill="url(#gSnow)"/>
+</g>
+<circle cx="25" cy="33.4" r="1.9" fill="#3A2A25"/><circle cx="35" cy="33.4" r="1.9" fill="#3A2A25"/>
+<circle cx="25.6" cy="32.8" r=".7" fill="#fff"/><circle cx="35.6" cy="32.8" r=".7" fill="#fff"/>
+<ellipse cx="20.6" cy="36.4" rx="2.6" ry="1.6" fill="#FF8FA0" opacity=".6"/><ellipse cx="39.4" cy="36.4" rx="2.6" ry="1.6" fill="#FF8FA0" opacity=".6"/>
+<ellipse cx="30" cy="36" rx="2.7" ry="2.2" fill="#FFB3A7" stroke="#5B3A33" stroke-width="1"/>
+<path d="M26.8 41 Q30 43.6 33.2 41" fill="none" stroke="#5B3A33" stroke-width="1.3" stroke-linecap="round"/>
+</svg></span>`;
+
+const sdeer = x => `<g transform="translate(${x},58)">
+<g ${SK}>
+<path d="M-13 8 V22 M-5 9 V22 M9 9 V22 M17 8 V22" fill="none" stroke="#5B3A33" stroke-width="6.4"/>
+<path d="M-13 8 V22 M-5 9 V22 M9 9 V22 M17 8 V22" fill="none" stroke="#B5763F" stroke-width="3.6"/>
+<circle cx="-23" cy="-3" r="4.6" fill="url(#gSnow)"/>
+<ellipse cx="0" cy="0" rx="22" ry="12.5" fill="url(#gBrown)"/>
+<path d="M13 -3 L24 -13" fill="none" stroke="#5B3A33" stroke-width="13"/>
+<path d="M13 -3 L24 -13" fill="none" stroke="#CE9158" stroke-width="10"/>
+<path d="M26 -24 C24 -32 28 -37 24 -43 M25 -31 C21 -32 19 -35 19 -38 M26.6 -35 C30 -36 32 -39 31 -42" fill="none" stroke="#8B5A33" stroke-width="2.8"/>
+<ellipse cx="17" cy="-22" rx="5.4" ry="2.8" transform="rotate(-32 17 -22)" fill="url(#gBrown)"/>
+<circle cx="26" cy="-15" r="10" fill="url(#gBrown)"/>
+<ellipse cx="32" cy="-11.5" rx="6.4" ry="5.2" fill="#F7E3C8" stroke-width="1.2"/>
+<circle cx="36.2" cy="-12" r="3.9" fill="url(#gRed)" stroke-width="1.3"/>
+<path d="M11 -2 Q16 -11 25 -4" fill="none" stroke="#2A9560" stroke-width="3.2"/>
+<circle cx="17" cy="-5.4" r="2.5" fill="url(#gGold)" stroke-width="1.2"/>
+</g>
+<circle cx="26.6" cy="-18.4" r="1.7" fill="#3A2A25"/><circle cx="27.1" cy="-19" r=".6" fill="#fff"/>
+<circle cx="35.4" cy="-13.2" r="1.1" fill="#fff" opacity=".85"/>
+<ellipse cx="22" cy="-11.6" rx="2.6" ry="1.7" fill="#FF9A9A" opacity=".6"/>
+</g>`;
+
+const SANTA_SVG = `<svg class="cu" viewBox="0 -8 280 92" width="230" height="76" aria-hidden="true">
+<g ${SK}>
+<path d="M118 46 Q132 48 146 56 M186 60 L211 60" fill="none" stroke="#8B5E34" stroke-width="2.2"/>
+</g>
+${sdeer(232)}${sdeer(165)}
+<g ${SK}>
+<path d="M68 36 C68 24 76 19 84 19 C92 19 100 24 100 36Z" fill="url(#gRed)"/>
+<path d="M97 27 L106 19" fill="none" stroke="#5B3A33" stroke-width="7.6"/><path d="M97 27 L106 19" fill="none" stroke="#E0463C" stroke-width="5"/>
+<circle cx="107.4" cy="17.4" r="3.8" fill="url(#gSnow)"/>
+<circle cx="84" cy="12" r="8.6" fill="url(#gSkin)"/>
+<path d="M75.6 13 Q75 24 84 24.6 Q93 24 92.4 13 Q84 18.6 75.6 13Z" fill="url(#gSnow)"/>
+<path d="M75.4 9 C74.6 -3 86 -6 93 2.4 C95.4 5.4 94.6 9 94.6 9Z" fill="url(#gRed)"/>
+<rect x="73.6" y="6" width="22" height="5.6" rx="2.8" fill="url(#gSnow)"/>
+<circle cx="95.6" cy="2.6" r="3.6" fill="url(#gSnow)"/>
+<path d="M16 34 C11 17 22 6 35 11 C47 8 54 22 47 34Z" fill="url(#gTan)"/>
+<path d="M27 11 L30 6 L36 6 L38 11" fill="none"/>
+<rect x="46" y="14" width="9" height="9" rx="1.6" transform="rotate(18 50 18)" fill="url(#gGreen)"/>
+<rect x="9" y="22" width="9" height="9" rx="1.6" transform="rotate(-16 13 26)" fill="url(#gBlue)"/>
+<path d="M10 34 C8 54 20 62 36 62 H98 C112 62 118 52 120 38 L108 40 C104 30 96 28 90 30 H24 C16 30 11 31 10 34Z" fill="url(#gRed)"/>
+<path d="M12 58 H110 Q116 58 114 66 Q112 70 104 70 H26" fill="none" stroke="#8B5E34" stroke-width="3.2"/>
+<path d="M30 62 V70 M88 62 V70" fill="none" stroke="#8B5E34" stroke-width="3"/>
+<path d="M10 70 Q4 70 4 62" fill="none" stroke="#8B5E34" stroke-width="3.2"/>
+</g>
+<path d="M14 50 Q62 58 116 48" fill="none" stroke="#FFE27A" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="80.4" cy="11.8" r="1.2" fill="#3A2A25"/><circle cx="87.6" cy="11.8" r="1.2" fill="#3A2A25"/>
+<circle cx="84" cy="14" r="2.3" fill="#FFB3A7"/>
+<ellipse cx="78.2" cy="14.4" rx="2.2" ry="1.5" fill="#FF8FA0" opacity=".6"/><ellipse cx="89.8" cy="14.4" rx="2.2" ry="1.5" fill="#FF8FA0" opacity=".6"/>
+<path d="M18 16 C22 12 28 12 31 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
 </svg>`;
 const XM = {'2026-12-24':'🎄 平安夜','2026-12-25':'🎅 聖誕節'};
 const DAYI = ['plane','globe','train','umbrella','deer','car','suitcase'];
@@ -350,7 +552,7 @@ function viewPlan(){
   const wish = `<section class="day" id="day-0"><div class="dayh"><div class="row1"><span class="badge hand">WISH</span><span class="n round">想去・想吃</span></div><div class="t">還沒決定哪天的先放這裡</div><span class="dic">${ic('nabe',50)}</span></div>
     <div class="items">${P.wish.map(itemHTML).join('') || '<div class="empty">想吃的餐廳、想去的地方先放這裡。決定後按「編輯」選日期，就會移到那天。</div>'}</div>
     ${edit ? `<div class="dayfoot"><button class="primary" data-act="add" data-day="0">＋ 新增</button></div>` : ''}</section>`;
-  const foot = `<div class="xmas"><div class="row">${snowman(48,0)}${snowman(60,-.7)}${snowman(42,-1.4)}</div><div class="hand">Merry Christmas！🎄</div></div>`;
+  const foot = `<div class="xmas"><div class="row">${snowman(44,0)}${elf(44,-.5)}<button class="treebtn" data-act="tree" aria-label="聖誕樹">${treeSvg(92)}</button>${reindeer(46,-1)}${snowman(40,-1.5)}</div><div class="hand">點聖誕樹、點選單上的小人，有驚喜！🎁</div><div class="hand" style="margin-top:2px">Merry Christmas！🎄</div></div>`;
   return days + wish + foot;
 }
 function viewTodo(){
@@ -365,7 +567,7 @@ function viewMemo(){
     ${MM.map(m => `<div class="memo"><h3 class="round">${esc(m.title)}</h3><div class="body">${esc(m.body)}</div>
       ${edit ? `<div class="btns2"><button data-act="memoedit" data-id="${m.id}">編輯</button><button class="danger" data-act="memodel" data-id="${m.id}">刪除</button></div>` : ''}</div>`).join('') || '<div class="empty">還沒有備忘</div>'}
     <h2 style="font-size:1.1rem;margin-top:24px">旅伴</h2>
-    ${P.members.map(m => `<div class="todo"><span class="dot" style="background:${mcolor(m.id)};width:1em;height:1em"></span><div class="tx">${esc(m.name)}</div>${edit ? `<button data-act="rename" data-id="${m.id}">改名</button>` : ''}</div>`).join('')}</div>`;
+    ${P.members.map(m => `<div class="todo"><span class="dot" style="background:${mcolor(m.id)};width:1em;height:1em"></span><div class="tx">${esc(m.name)}</div>${edit ? `<button data-act="rename" data-id="${m.id}">改名</button>` : ''}</div>`).join('')}${walkerSettings()}</div>`;
 }
 function renderNav(){
   const n = TD.filter(t => !t.done).length;
@@ -492,6 +694,10 @@ document.addEventListener('click', async e => {
     case 'tab': tab = id; render(); window.scrollTo(0,0); break;
     case 'font': big = !big; localStorage.setItem('okt-big', big?'1':'0'); document.documentElement.classList.toggle('big', big); render(); break;
     case 'snow': snowToggle(!snowOn); render(); break;
+    case 'wspeed': wSpeed = +id; saveWS(); render(); { const t = WSPEED[wSpeed]; toast(t.m ? `小人走路：${t.n}` : '小人站著不動'); } break;
+    case 'wchar': { const k = +id; if (!wOn.includes(k) && wOn.length >= WMAX){ toast(`最多同時 ${WMAX} 位，先取消一位再選`); break; } wOn = wOn.includes(k) ? wOn.filter(x => x !== k) : wOn.concat(k); saveWS(); walkInit(); render(); toast(wOn.length ? `目前有 ${wOn.length} 位小人` : '小人都回家休息了'); break; }
+    case 'wcolor': wColor = +id; saveWS(); applyWColor(); render(); break;
+    case 'tree': { treeJig(); const r = b.getBoundingClientRect(); burstGifts(r.left + r.width / 2, r.top + 24, 9); toast(prize()); break; }
     case 'santa': if (santaEl) toast('聖誕老人已經在路上了 🎅'); else santaFly(true); break;
     case 'editmode': edit = !edit; localStorage.setItem('okt-edit', edit?'1':'0'); render(); break;
     case 'jump': $(id)?.scrollIntoView({behavior:'smooth', block:'start'}); break;
@@ -565,6 +771,8 @@ function santaFly(force){
   el.innerHTML = `<span class="ho hand">Ho Ho Ho!</span><div class="bob">${SANTA_SVG}</div>`;
   el.style.top = ($('stick').offsetHeight + 34 + Math.random() * Math.max(40, innerHeight * .28)) + 'px';
   document.body.appendChild(el); santaEl = el;
+  el.style.pointerEvents = 'auto'; el.style.cursor = 'pointer';
+  el.addEventListener('click', () => { const r = el.getBoundingClientRect(); burstGifts(r.left + 90, r.top + 30, 7); toast('Ho Ho Ho！送你禮物 🎁'); });
   const a = el.animate([{transform:'translateX(-240px)'},{transform:`translateX(${innerWidth + 20}px)`}], {duration: Math.max(9000, innerWidth * 22), easing:'linear'});
   a.onfinish = a.oncancel = () => { el.remove(); if (santaEl === el) santaEl = null; };
 }
@@ -572,6 +780,175 @@ function santaSchedule(){ clearTimeout(santaTimer); santaTimer = setTimeout(() =
 function santaStop(){ clearTimeout(santaTimer); if (santaEl){ santaEl.remove(); santaEl = null; } }
 document.body.classList.toggle('calm', !snowOn);
 if (snowOn){ setTimeout(() => santaFly(), 5000); santaSchedule(); }
+
+/* ============ 聖誕樹與禮物 ============ */
+const GCOL = ['#D9482B','#F5A623','#2C9BD6','#2FA67A','#A767D6'];
+const GGRAD = ['gRed','gGold','gBlue','gGreen','gPurple'];
+const treeSvg = (sz = 60) => `<svg class="cu" viewBox="-2 -4 64 82" width="${sz}" height="${Math.round(sz*82/64)}" aria-hidden="true">
+${SHADOW(30,76,20)}
+<g ${SK}>
+<rect x="24" y="64" width="12" height="10" rx="2.4" fill="#B5763F"/>
+<path d="M30 38 C22 44 12 52 6 66 Q5 68.4 8 68.4 H52 Q55 68.4 54 66 C48 52 38 44 30 38Z" fill="url(#gGreen)"/>
+<path d="M30 24 C24 30 16 38 11 50 Q10 52.4 12.6 52.4 H47.4 Q50 52.4 49 50 C44 38 36 30 30 24Z" fill="url(#gGreen)"/>
+<path d="M30 11 C26 17 20 24 16 34 Q15 36.4 17.6 36.4 H42.4 Q45 36.4 44 34 C40 24 34 17 30 11Z" fill="url(#gGreen)"/>
+</g>
+<path d="M11 58 Q22 66 30 59 Q40 66 50 58" fill="none" stroke="#FFE27A" stroke-width="2.6" stroke-dasharray="0.1 5" stroke-linecap="round"/>
+<path d="M17 43 Q24 50 30 44 Q36 50 43 43" fill="none" stroke="#FFE27A" stroke-width="2.6" stroke-dasharray="0.1 5" stroke-linecap="round"/>
+<g stroke="#5B3A33" stroke-width="1">
+<circle class="tw" cx="19" cy="61" r="3.5" fill="url(#gRed)"/><circle class="tw" style="animation-delay:-.6s" cx="42" cy="62" r="3.5" fill="url(#gGold)"/>
+<circle class="tw" style="animation-delay:-1.1s" cx="30" cy="54" r="3.2" fill="url(#gBlue)"/><circle class="tw" style="animation-delay:-.3s" cx="24" cy="42" r="3.2" fill="url(#gGold)"/>
+<circle class="tw" style="animation-delay:-.9s" cx="37" cy="41" r="3.2" fill="url(#gRed)"/><circle class="tw" style="animation-delay:-1.3s" cx="30" cy="27" r="2.8" fill="url(#gPurple)"/>
+</g>
+<g fill="#fff" opacity=".85"><circle cx="18" cy="60" r="1"/><circle cx="41" cy="61" r="1"/><circle cx="29.2" cy="53.2" r=".9"/><circle cx="23.2" cy="41.2" r=".9"/><circle cx="36.2" cy="40.2" r=".9"/></g>
+<circle cx="30" cy="7" r="9.5" fill="#FFE98F" opacity=".4"/>
+<path d="M30 0 L31.76 4.57 L36.66 4.84 L32.85 7.93 L34.11 12.66 L30 10 L25.89 12.66 L27.15 7.93 L23.34 4.84 L28.24 4.57Z" fill="url(#gGold)" stroke="#5B3A33" stroke-width="1.3" stroke-linejoin="round"/>
+</svg>`;
+const giftSvg = (c, sz = 46) => { const g = GGRAD[Math.max(0, GCOL.indexOf(c))]; return `<svg class="cu" viewBox="0 0 48 48" width="${sz}" height="${sz}" aria-hidden="true">
+<ellipse cx="24" cy="45.4" rx="16" ry="2.4" fill="rgba(60,80,110,.18)"/>
+<g ${SK}>
+<rect x="7" y="22" width="34" height="22" rx="4" fill="url(#${g})"/>
+<rect x="4" y="15" width="40" height="9.5" rx="3.6" fill="url(#${g})"/>
+<rect x="20" y="15" width="8" height="29" fill="#FFF3D2"/>
+<path d="M24 15 C16 3 6 7.4 12.4 13.6 C15.6 16 21 15 24 15Z M24 15 C32 3 42 7.4 35.6 13.6 C32.4 16 27 15 24 15Z" fill="#FFF3D2"/>
+<circle cx="24" cy="14.4" r="2.8" fill="url(#gGold)"/>
+</g>
+<rect x="10" y="27" width="3" height="10" rx="1.5" fill="#fff" opacity=".5"/>
+</svg>`; };
+
+function prize(){
+  const n = P.members.length ? P.members[Math.floor(Math.random() * P.members.length)].name : '你';
+  const L = [`${n} 請大家喝熱可可 ☕`, `今晚加碼：多吃一碗拉麵 🍜`, `${n} 是今天的專屬攝影師 📸`, `抽中好運：今天排隊特別順利 🍀`,
+    `${n} 可以決定下一餐吃什麼 🍣`, `免費擁抱一次 🤗（找 ${n} 領取）`, `今天的雪景超適合拍照 ✨`, `${n} 的背包今天由大家輪流揹 🎒`,
+    `買一送一：甜點多點一份 🍡`, `聖誕老人說：今天走路不會累 👟`, `今天的好運：剛好趕上電車 🚃`, `${n} 可以選下一個要逛的店 🛍️`];
+  return L[Math.floor(Math.random() * L.length)];
+}
+function treeJig(){
+  document.querySelectorAll('.treebtn svg').forEach(el =>
+    el.animate([{transform:'rotate(0)'},{transform:'rotate(-7deg) scale(1.08)'},{transform:'rotate(6deg)'},{transform:'rotate(-3deg)'},{transform:'none'}], {duration:550}));
+}
+/* ---- 噴禮物：只往上噴、淡出，不會掉下來擋畫面 ---- */
+function burstGifts(x, y, n = 8){
+  for (let i = 0; i < n; i++){
+    const el = document.createElement('div'); el.className = 'pgift';
+    el.innerHTML = giftSvg(GCOL[i % 5], 28);
+    el.style.left = (x - 14) + 'px'; el.style.top = (y - 14) + 'px';
+    document.body.appendChild(el);
+    const a = -Math.PI * (.1 + .8 * Math.random()), r = 55 + Math.random() * 75, rot = (Math.random() - .5) * 140;
+    const dx = Math.cos(a) * r * 1.15, dy = Math.sin(a) * r;
+    el.animate([
+      {transform:'translate(0,0) scale(.3) rotate(0deg)', opacity:0},
+      {transform:`translate(${dx * .7}px,${dy}px) scale(1) rotate(${rot * .6}deg)`, opacity:1, offset:.4},
+      {transform:`translate(${dx}px,${dy + 12}px) scale(.85) rotate(${rot}deg)`, opacity:0}
+    ], {duration: 1000 + Math.random() * 350, delay: i * 45, easing:'cubic-bezier(.2,.7,.3,1)', fill:'backwards'}).onfinish = () => el.remove();
+  }
+}
+
+/* ---- 選單上的小人：好幾個一起走，點了會說話 ---- */
+const WSZ = 33, WGAP = 30;
+const CAST = [
+  {draw: () => elf(WSZ, 0, true),  say: ['跟我送禮去！🎁', '我是穿綠衣服的小精靈 🌲', '今天的禮物我來包！🎀']},
+  {draw: () => elf(WSZ, 0, false), say: ['聖誕快樂！🎄', '我負責把行李塞進背包 🧳', '耶～要吃拉麵嗎？🍜']},
+  {draw: () => reindeer(WSZ, 0),   say: ['我的鼻子亮不亮？🔴', '雪橇有我，不怕累 🛷', '嗚～好想吃糰子 🍡']},
+  {draw: () => snowman(WSZ, 0),    say: ['我不怕冷喔 ❄️', '別把我帶進溫泉啦 ♨️', '幫我拍張照吧 📸']},
+  {draw: () => penguin(WSZ, 0),    say: ['我是從南極來的 🐧', '地板好滑，扶好我！🧊', '魚呢？我要吃魚 🐟']},
+  {draw: () => ginger(WSZ, 0),     say: ['別咬我，我很香 🍪', '我是薑餅人，抓不到我！🏃', '要不要來塊餅乾？🍪']},
+  {draw: () => bear(WSZ, 0),       say: ['抱抱～ 🧸', '我喜歡雪，也喜歡你 ❄️', '今天好冷，一起取暖吧 🧣']},
+  {draw: () => minisanta(WSZ, 0),  say: ['Ho Ho Ho！🎅', '你今年有乖乖嗎？🎁', '我偷偷放了禮物在你包包 🎒']},
+];
+const WSPEED = [{n:'不動', m:0}, {n:'很慢', m:.5}, {n:'慢', m:1}, {n:'中', m:1.8}, {n:'快', m:3}];
+const WCOL = [{n:'紅', a:'#FF9482', b:'#D3382F'}, {n:'藍', a:'#96D3F8', b:'#2E8FD6'}, {n:'紫', a:'#D5B2F4', b:'#8A58CF'}, {n:'粉', a:'#FFB6D0', b:'#E8508A'}, {n:'金', a:'#FFEE9E', b:'#F2A21E'}];
+const WNAME = ['小精靈（紅帽）', '小精靈（綠帽）', '麋鹿', '雪人', '企鵝', '薑餅人', '北極熊', '小聖誕老人'];
+const WMAX = 5;
+let WS = {}; try { WS = JSON.parse(localStorage.getItem('okt-walk')) || {}; } catch(e){}
+let wSpeed = Number.isInteger(WS.speed) && WSPEED[WS.speed] ? WS.speed : 2;
+let wOn = Array.isArray(WS.on) ? WS.on.filter(i => Number.isInteger(i) && i >= 0 && i < WNAME.length).slice(0, WMAX) : [0, 1, 2, 3];
+let wColor = Number.isInteger(WS.color) && WCOL[WS.color] ? WS.color : 0;
+const saveWS = () => localStorage.setItem('okt-walk', JSON.stringify({speed:wSpeed, on:wOn, color:wColor}));
+function applyWColor(){ document.documentElement.style.setProperty('--a1', WCOL[wColor].a); document.documentElement.style.setProperty('--a2', WCOL[wColor].b); }
+applyWColor();
+function walkerSettings(){
+  return `<h2 class="round" style="font-size:1.1rem;margin-top:24px">小人設定</h2>
+    <div class="small">調整選單上走路的小人。只改這支手機，不影響別人。</div>
+    <label>走路速度</label><div class="pick">${WSPEED.map((v, k) => `<button class="chip pk ${wSpeed === k ? 'on' : ''}" data-act="wspeed" data-id="${k}">${v.n}</button>`).join('')}</div>
+    <label>想看到誰（最多 ${WMAX} 位，點一下選取或取消）</label><div class="pick">${WNAME.map((n, k) => `<button class="chip pk ${wOn.includes(k) ? 'on' : ''}" data-act="wchar" data-id="${k}">${n}</button>`).join('')}</div>
+    <label>帽子與衣服的顏色</label><div class="pick">${WCOL.map((c, k) => `<button class="chip pk ${wColor === k ? 'on' : ''}" data-act="wcolor" data-id="${k}"><span class="dot" style="background:${c.b};width:1em;height:1em"></span> ${c.n}</button>`).join('')}</div>`;
+}
+let wks = [], wkBub = null, wkBubT = 0, wkLast = 0, wkClicks = 0;
+function chat(w){
+  const n = P.members.length ? P.members[Math.floor(Math.random() * P.members.length)].name : '你';
+  const common = [`${n}，今天走了幾步呢？👟`, `${n}，要不要來杯熱飲？☕`, `${n}，笑一個！😊`, '天氣冷，記得多穿一件！🧣', '歡迎來京都～ ⛩️'];
+  const r = Math.random();
+  if (r < .4) return w.cast.say[Math.floor(Math.random() * w.cast.say.length)];
+  if (r < .7) return prize();
+  return common[Math.floor(Math.random() * common.length)];
+}
+function walkerSay(w, msg, ms = 2800){
+  if (!wkBub){ wkBub = document.createElement('div'); wkBub.className = 'wsay hand'; document.body.appendChild(wkBub); }
+  wkBub.textContent = msg; wkBub.classList.add('show');
+  const bw = wkBub.offsetWidth, cx = w.x + WSZ / 2, left = Math.max(8, Math.min(innerWidth - bw - 8, cx - bw / 2));
+  wkBub.style.left = left + 'px';
+  wkBub.style.setProperty('--tail', Math.max(16, Math.min(bw - 16, cx - left)) + 'px');
+  clearTimeout(wkBubT); wkBubT = setTimeout(() => wkBub.classList.remove('show'), ms);
+  w.wait = ms;
+}
+function walkerClick(w){
+  wkClicks++;
+  const b = w.el.firstChild, r = b.getBoundingClientRect();
+  walkerSay(w, chat(w));
+  b.animate([{transform:`scaleX(${w.dir}) translateY(0) scale(1)`}, {transform:`scaleX(${w.dir}) translateY(-10px) scale(1.12,.92)`, offset:.4}, {transform:`scaleX(${w.dir}) translateY(0) scale(1)`}], {duration: 420, easing:'ease-out'});
+  if (wkClicks % 2 === 0) burstGifts(r.left + r.width / 2, r.top + 6, 8);
+}
+function walkBounds(){ const nr = $('nav').getBoundingClientRect(); return [nr.left + 8, Math.max(nr.left + 8, nr.right - WSZ - 8)]; }
+function walkStep(dt){
+  const [lo, hi] = walkBounds();
+  for (const w of wks){
+    const still = reduceMotion || WSPEED[wSpeed].m === 0 || w.wait > 0;
+    if (w.wait > 0) w.wait -= dt;
+    if (!still){
+      w.x += w.dir * w.speed * WSPEED[wSpeed].m * dt;
+      if (w.x >= hi){ w.x = hi; w.dir = -1; }
+      else if (w.x <= lo){ w.x = lo; w.dir = 1; }
+    }
+    w.still = still;
+  }
+  // 彼此保持距離：快碰到就各自轉頭
+  const o = wks.slice().sort((a, b) => a.x - b.x);
+  for (let k = 0; k < o.length - 1; k++){
+    const a = o[k], c = o[k + 1], gap = c.x - a.x;
+    if (gap < WGAP){
+      const push = (WGAP - gap) / 2; a.x -= push; c.x += push;
+      if (a.dir === 1 && c.dir === -1){ a.dir = -1; c.dir = 1; }
+      else if (a.dir === c.dir){ if (a.dir === 1){ a.speed = Math.min(a.speed, c.speed); } else { c.speed = Math.min(c.speed, a.speed); } }
+    }
+  }
+  for (const w of wks){
+    w.x = Math.max(lo, Math.min(hi, w.x));
+    w.el.classList.toggle('stand', w.still);
+    w.el.style.transform = `translateX(${w.x}px)`;
+    w.el.firstChild.style.transform = `scaleX(${w.dir})`;
+  }
+}
+function walkFrame(t){
+  const dt = Math.min(50, t - (wkLast || t)); wkLast = t;
+  walkStep(dt);
+  requestAnimationFrame(walkFrame);
+}
+function walkInit(){
+  wks.forEach(w => w.el.remove()); wks = [];
+  if (wkBub) wkBub.classList.remove('show');
+  const [lo, hi] = walkBounds(), span = Math.max(1, hi - lo), list = wOn.slice().sort();
+  list.forEach((ci, i) => {
+    const c = CAST[ci];
+    const el = document.createElement('div'); el.className = 'walker';
+    el.innerHTML = `<button class="wbtn" aria-label="點我，我會說話"><span class="stp" style="animation-delay:${-i * .13}s;animation-duration:${.8 + i * .06}s">${c.draw()}</span></button>`;
+    document.body.appendChild(el);
+    const w = {el, cast:c, x: lo + span * (i + .5) / list.length - WSZ / 2, dir: i % 2 ? -1 : 1, speed: .014 + (ci % 3) * .005, wait: 0};
+    el.firstChild.addEventListener('click', () => walkerClick(w));
+    wks.push(w);
+  });
+}
+walkInit(); requestAnimationFrame(walkFrame);
+if (!localStorage.getItem('okt-tip2')){ localStorage.setItem('okt-tip2', '1'); setTimeout(() => toast('點選單上的小人，他們會說話喔 🎅'), 4000); }
 
 /* ============ 啟動 ============ */
 if (!applyCache()){ const s = seed(); P = s.plan; TD = s.todos; MM = s.memos; norm(); }
