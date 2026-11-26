@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="大阪京都">
+<meta name="apple-mobile-web-app-title" content="旅遊行程">
 <meta name="theme-color" content="#FFFCF5">
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<title>大阪・京都 七日</title>
+<title>旅遊行程</title>
 <style>
-:root{--a1:#FF9482;--a2:#D3382F;--bg:#EAF3FA;--ink:#2B2B2B;--org:#F5A623;--orgl:#FFF0CF;--sub:#66727F;--line:#C8D6E3;--soft:#FFF0CF;--red:#D9482B;--fs:17px;--stick:60px}
+:root{--a1:#FF9482;--a2:#D3382F;--bg:#EAF3FA;--sky:#CFE3F3;--ink:#2B2B2B;--org:#F5A623;--orgl:#FFF0CF;--sub:#66727F;--line:#C8D6E3;--soft:#FFF0CF;--red:#D9482B;--fs:17px;--stick:60px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{font-size:var(--fs)}
 html.big{--fs:20px}
@@ -38,12 +38,14 @@ label{display:block;font-size:.82rem;color:var(--sub);margin:1em 0 .25em;font-we
 .ic .o{fill:var(--ico,var(--org))}
 .ic .w{fill:#fff}
 
-#head{background:linear-gradient(#CFE3F3,var(--bg))}
+#head{background:linear-gradient(var(--sky),var(--bg))}
 #snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15}
+.sbtn{white-space:nowrap}
 /* ===== 頂端插畫 ===== */
 .art{position:relative;max-width:440px;height:220px;margin:calc(8px + env(safe-area-inset-top)) auto 0}
 .art .blob{position:absolute;left:5%;top:12%;width:90%;height:78%}
 .art .blob path{fill:var(--org);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.art .dc svg,.art .dc{transition:none}
 .art .dc{position:absolute;line-height:0}
 .ttl{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);text-align:center;width:80%}
 .ttl .oko{font-size:.95rem;transform:rotate(-7deg);display:inline-block;margin-bottom:-.2em;color:var(--ink)}
@@ -132,7 +134,7 @@ nav .bd{display:inline-block;min-width:1.4em;margin-left:.3em;font-size:.72rem;b
 #viewer img{max-width:100%;height:auto;display:block;margin:0 auto}
 #viewer a.lk{display:inline-block;padding:.7em 1.4em;background:var(--org);color:var(--ink);border:2px solid var(--ink);text-decoration:none;border-radius:999px;font-weight:700}
 
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(168px + env(safe-area-inset-bottom));z-index:70;background:var(--ink);color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;display:none;max-width:92vw}
+#toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(14px + env(safe-area-inset-top));bottom:auto;z-index:80;background:var(--ink);color:#fff;padding:.6em 1.1em;border-radius:999px;font-size:.9rem;display:none;max-width:92vw}
 #toast.show{display:block}
 /* ===== 聖誕：雪人 + 聖誕老人 ===== */
 .sm{display:inline-block;line-height:0;transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite}
@@ -168,6 +170,21 @@ body.calm .tw{animation:none}
 .wsay::after{content:"";position:absolute;left:var(--tail,50%);bottom:-8px;width:11px;height:11px;background:#fff;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:translateX(-50%) rotate(45deg)}
 .pgift{position:fixed;z-index:66;pointer-events:none;line-height:0;width:28px;height:28px}
 .wsay,#santa .ho,.xmas .hand{font-family:inherit;font-weight:700}
+/* ===== 想去・想吃：城市、推薦、附近 ===== */
+.ctag{display:inline-block;font-size:.72rem;font-weight:800;color:#fff;background:var(--cc,#888);border:1.5px solid var(--ink);border-radius:999px;padding:0 .6em;margin-right:.45em;vertical-align:.12em;line-height:1.5}
+.wtools{padding:.7em 0 .2em}
+.wtools .chips{padding:8px 0 2px;margin:0}
+.wtools .nearbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:.4em;font-weight:800}
+.rec{margin-top:.5em;padding:.45em .7em;background:var(--orgl);border:1.5px dashed var(--ink);border-radius:12px;font-size:.86rem;line-height:1.5}
+.rec b{font-weight:800}
+.rec .btns2{margin-top:.4em}
+.rec.weak{background:#fff;color:var(--sub)}
+.nrow{padding:.65em 0;border-bottom:2px dashed var(--line)}
+.nrow:last-child{border:0}
+.nrow .d{font-size:.84rem;color:var(--sub)}
+.nmsg{font-size:.88rem;margin:.6em 0;padding:.5em .7em;border-radius:12px;background:var(--orgl)}
+html:not([data-season=winter]) .xm{display:none}
+.two2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(min-width:760px){html{--fs:18px}}
 </style>
 </head>
@@ -201,8 +218,45 @@ body.calm .tw{animation:none}
 const DB_URL = 'https://osaka-kyoto-3fa49-default-rtdb.asia-southeast1.firebasedatabase.app';
 const ROOT   = 'osaka-kyoto-2026-m4x7q';   // 資料夾名稱（當作簡易密碼，別人猜不到）
 
+/* ============ 四季主題 ============ */
+const SEASONS = {
+  spring:{n:'春', e:'🌸', sub:'KYOTO SPRING', oko:'おこしやす', title:'大阪・京都', fall:'petal', fallName:'花瓣', fallOn:'花瓣飄落中', fallOff:'花瓣停了',
+    v:{'--bg':'#FFF5F7','--sky':'#FFD6E2','--org':'#FF9DB5','--orgl':'#FFE3EA','--sub':'#8A6C77','--line':'#F0CDD6','--soft':'#FFE3EA','--red':'#D6456B'},
+    deco:{L:'fan',T1:'sakura',T2:'sakura',R:'torii',B1:'dango',B2:'matcha',BR:'pagoda',M:'sakura'}, mascot:'bear',
+    say:['春天到了，櫻花開了 🌸','今天適合賞花 🌸','來串三色糰子吧 🍡'], dayBadge:'春'},
+  summer:{n:'夏', e:'🌻', sub:'KYOTO SUMMER', oko:'おこしやす', title:'大阪・京都', fall:'firefly', fallName:'螢火蟲', fallOn:'螢火蟲飛舞中', fallOff:'螢火蟲睡了',
+    v:{'--bg':'#E9F8FB','--sky':'#B9ECF5','--org':'#FFC93C','--orgl':'#FFF0B8','--sub':'#4F7480','--line':'#BFE0E6','--soft':'#FFF0B8','--red':'#E8553A'},
+    deco:{L:'fan',T1:'sun',T2:'cloud',R:'torii',B1:'icecream',B2:'kakigori',BR:'pagoda',M:'sun'}, mascot:'penguin',
+    say:['夏天就是要吃刨冰 🍧','記得擦防曬、補水 💧','今天好熱～ ☀️'], dayBadge:'夏'},
+  autumn:{n:'秋', e:'🍁', sub:'KYOTO AUTUMN', oko:'おこしやす', title:'大阪・京都', fall:'leaf', fallName:'楓葉', fallOn:'楓葉飄落中', fallOff:'楓葉停了',
+    v:{'--bg':'#FFF3E4','--sky':'#FFD9A8','--org':'#F28A2E','--orgl':'#FFE2BC','--sub':'#8A6B4F','--line':'#EBCFAA','--soft':'#FFE2BC','--red':'#C5391B'},
+    deco:{L:'fan',T1:'maple',T2:'ginkgo',R:'torii',B1:'dango',B2:'matcha',BR:'pagoda',M:'maple'}, mascot:'reindeer',
+    say:['楓葉紅了，快拍照 🍁','來杯熱抹茶暖暖身 🍵','秋天最適合散步 🍂'], dayBadge:'秋'},
+  winter:{n:'冬', e:'⛄', sub:'KYOTO WINTER', oko:'おこしやす', title:'大阪・京都', fall:'snow', fallName:'雪', fallOn:'下雪中', fallOff:'雪停了',
+    v:{'--bg':'#EAF3FA','--sky':'#CFE3F3','--org':'#F5A623','--orgl':'#FFF0CF','--sub':'#66727F','--line':'#C8D6E3','--soft':'#FFF0CF','--red':'#D9482B'},
+    deco:{L:'fan',T1:'flake',T2:'flake',R:'torii',B1:'dango',B2:'nabe',BR:'pagoda',M:'nanten'}, mascot:'snowman',
+    say:['冬天就是要吃火鍋 🍲','多穿一件，別著涼 🧣','雪景好美 ❄️'], dayBadge:'冬'},
+};
+const SORDER = ['spring', 'summer', 'autumn', 'winter'];
+const SEASONW = {spring:'SPRING', summer:'SUMMER', autumn:'AUTUMN', winter:'WINTER'};
+const seasonAuto = () => { const m = new Date().getMonth() + 1; return m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter'; };
+let SPREF = localStorage.getItem('okt-season') || 'auto';
+if (SPREF !== 'auto' && !SEASONS[SPREF]) SPREF = 'auto';
+const seasonKey = () => SPREF === 'auto' ? seasonAuto() : SPREF;
+const SE = () => SEASONS[seasonKey()];
+function applySeason(){
+  const k = seasonKey(), root = document.documentElement.style;
+  for (const sk of SORDER) for (const name of Object.keys(SEASONS[sk].v)) root.removeProperty(name);
+  for (const [name, val] of Object.entries(SEASONS[k].v)) root.setProperty(name, val);
+  document.documentElement.dataset.season = k;
+  const tc = document.querySelector('meta[name="theme-color"]'); if (tc) tc.setAttribute('content', SEASONS[k].v['--sky']);
+  const T = TRIP(), days = P && P.days ? P.days.length : 0;
+  document.title = `${T.title}${days ? ' ' + days + '日' : ''}｜${SEASONS[k].n}`;
+  const at = document.querySelector('meta[name="apple-mobile-web-app-title"]'); if (at) at.setAttribute('content', T.short || T.title);
+}
+
 /* ============ 基本 ============ */
-const COLORS = ['#EF5B72','#F5A623','#2FA67A','#2C9BD6','#A767D6'];   // 旅伴小圓點顏色
+const COLORS = ['#EF5B72','#F5A623','#2FA67A','#2C9BD6','#A767D6','#E8508A','#6A78E6','#1A9E92','#A8683A','#7DB83A'];   // 旅伴小圓點顏色
 const ICONS = {
   fan:`<path class="o" d="M24 44 L4 18 A32 32 0 0 1 44 18 Z"/><path d="M24 44 L24 11 M24 44 L13 14 M24 44 L35 14"/>`,
   torii:`<path class="o" d="M2 12 Q24 6 46 12 L44 18 Q24 13 4 18 Z"/><path d="M9 24 H39 M12 18 V44 M36 18 V44 M24 14 V24"/><path class="w" d="M3 11 Q7 4 13 7 Q18 1 24 5 Q30 1 35 7 Q41 4 45 11 Q24 5 3 11Z"/>`,
@@ -210,6 +264,14 @@ const ICONS = {
   tsubaki:`<g fill="#D9482B"><circle cx="24" cy="12" r="9"/><circle cx="35" cy="20" r="9"/><circle cx="31" cy="33" r="9"/><circle cx="17" cy="33" r="9"/><circle cx="13" cy="20" r="9"/></g><circle cx="24" cy="24" r="6" fill="#F5C842"/><path d="M24 24 L24 21 M24 24 L27 25 M24 24 L21 25"/>`,
   nanten:`<path d="M24 44 C24 30 22 20 14 8 M24 44 C25 32 30 22 38 12 M24 36 C20 30 12 28 6 28"/><g fill="#D9482B"><circle cx="14" cy="10" r="4.2"/><circle cx="20" cy="14" r="4.2"/><circle cx="9" cy="16" r="4.2"/><circle cx="38" cy="13" r="4.2"/><circle cx="32" cy="18" r="4.2"/><circle cx="7" cy="29" r="4.2"/></g>`,
   nabe:`<path d="M16 15 Q14 11 16 7 M24 15 Q22 11 24 7 M32 15 Q30 11 32 7"/><path class="o" d="M5 22 H43 C43 36 35 44 24 44 C13 44 5 36 5 22Z"/><path d="M2 22 H46"/><path class="w" d="M13 27 Q24 31 35 27 Q33 37 24 38 Q15 37 13 27Z"/>`,
+  sakura:`<g class="o"><ellipse cx="24" cy="12" rx="7" ry="9.5"/><ellipse cx="24" cy="12" rx="7" ry="9.5" transform="rotate(72 24 24)"/><ellipse cx="24" cy="12" rx="7" ry="9.5" transform="rotate(144 24 24)"/><ellipse cx="24" cy="12" rx="7" ry="9.5" transform="rotate(216 24 24)"/><ellipse cx="24" cy="12" rx="7" ry="9.5" transform="rotate(288 24 24)"/></g><circle class="w" cx="24" cy="24" r="3.4"/>`,
+  maple:`<path class="o" d="M24 3 L28 12 L36 8 L33 18 L43 18 L36 25 L42 32 L30 31 L28 38 L24 34 L20 38 L18 31 L6 32 L12 25 L5 18 L15 18 L12 8 L20 12Z"/><path d="M24 34 V46"/>`,
+  ginkgo:`<path class="o" d="M24 45 V31 C12 31 5 21 6 9 C12 13 17 10 24 14 C31 10 36 13 42 9 C43 21 36 31 24 31Z"/><path d="M24 31 V17"/>`,
+  sun:`<circle class="o" cx="24" cy="24" r="10"/><path d="M24 3 V10 M24 38 V45 M3 24 H10 M38 24 H45 M9.2 9.2 L14.2 14.2 M33.8 33.8 L38.8 38.8 M9.2 38.8 L14.2 33.8 M33.8 14.2 L38.8 9.2"/>`,
+  cloud:`<path class="w" d="M12 36 C4 36 4 24 13 24 C14 14 30 12 33 22 C42 20 46 34 37 36Z"/>`,
+  icecream:`<path class="w" d="M13 24 L24 46 L35 24Z"/><path d="M17 31 L31 31 M20 38 L28 38"/><path class="o" d="M10 24 C6 14 14 8 20 12 C22 4 34 4 34 12 C42 10 44 22 38 24Z"/>`,
+  kakigori:`<path class="w" d="M10 26 L14 44 H34 L38 26Z"/><path class="o" d="M8 26 C4 14 14 6 24 8 C34 6 44 14 40 26Z"/><circle fill="#fff" cx="17" cy="16" r="1.8"/><circle fill="#fff" cx="29" cy="13" r="1.8"/><path d="M30 6 L38 2"/>`,
+  gear:`<circle class="o" cx="24" cy="24" r="9"/><path d="M24 4 V10 M24 38 V44 M4 24 H10 M38 24 H44 M9.9 9.9 L14.1 14.1 M33.9 33.9 L38.1 38.1 M9.9 38.1 L14.1 33.9 M33.9 14.1 L38.1 9.9"/><circle class="w" cx="24" cy="24" r="3.4"/>`,
   flake:`<g class="w"><path d="M24 3 V45 M5.8 13.5 L42.2 34.5 M42.2 13.5 L5.8 34.5"/><path d="M19 8 L24 13 L29 8 M19 40 L24 35 L29 40"/></g><circle class="o" cx="24" cy="24" r="4.5"/>`,
   dango:`<g transform="rotate(25 24 24)"><path d="M24 2 V46"/><circle class="o" cx="24" cy="12" r="8.5"/><circle class="w" cx="24" cy="24" r="8.5"/><circle class="o" cx="24" cy="36" r="8.5"/></g>`,
   matcha:`<path d="M18 13 Q16 9 18 5 M27 13 Q25 9 27 5"/><path class="o" d="M7 21 H41 C41 34 33 43 24 43 C15 43 7 34 7 21Z"/><ellipse class="w" cx="24" cy="21" rx="17" ry="4.5"/><path d="M16 46 H32"/>`,
@@ -239,8 +301,8 @@ ${SHADOW(30,69.5,19)}
 <path d="M37 43 L39 58 Q43 60 46.5 56.5 L43 41" fill="url(#gGreen)"/>
 <path d="M38 50 L43.5 49 M38.6 54 L44 52.8" stroke="#fff" stroke-width="1.4" fill="none"/>
 <path d="M17 19.5 C16 7 23 2 30 2 C37 2 44 7 43 19.5Z" fill="url(#gAcc)"/>
-<rect x="15" y="16.5" width="30" height="7.5" rx="3.75" fill="url(#gSnow)"/>
-<circle cx="30" cy="1.8" r="4" fill="url(#gSnow)"/>
+<rect class="xm" x="15" y="16.5" width="30" height="7.5" rx="3.75" fill="url(#gSnow)"/>
+<circle class="xm" cx="30" cy="1.8" r="4" fill="url(#gSnow)"/>
 </g>
 <circle cx="24.5" cy="27" r="1.9" fill="#3A2A25"/><circle cx="35.5" cy="27" r="1.9" fill="#3A2A25"/>
 <circle cx="25.1" cy="26.3" r=".7" fill="#fff"/><circle cx="36.1" cy="26.3" r=".7" fill="#fff"/>
@@ -261,8 +323,8 @@ ${SHADOW(30,67.5,17)}
 <path d="M12 56 Q30 62 48 56" fill="none" stroke="#5B3A33" stroke-width="3.4"/>
 <rect x="26.5" y="55.4" width="7" height="5.4" rx="1.2" fill="url(#gGold)" stroke-width="1.2"/>
 <path d="M13 31 C13 21 24 13 40 9 C42.4 8.4 44 10 43.6 12 C44 18 46 25 47 31 Q30 37 13 31Z" fill="url(#${alt?'gAcc':'gGreen'})"/>
-<ellipse cx="30" cy="31.5" rx="18" ry="4.6" fill="url(#gSnow)"/>
-<circle cx="43" cy="8" r="4.4" fill="url(#gSnow)"/>
+<ellipse class="xm" cx="30" cy="31.5" rx="18" ry="4.6" fill="url(#gSnow)"/>
+<circle class="xm" cx="43" cy="8" r="4.4" fill="url(#gSnow)"/>
 </g>
 <circle cx="23" cy="42" r="2.1" fill="#3A2A25"/><circle cx="37" cy="42" r="2.1" fill="#3A2A25"/>
 <circle cx="23.7" cy="41.3" r=".75" fill="#fff"/><circle cx="37.7" cy="41.3" r=".75" fill="#fff"/>
@@ -297,8 +359,8 @@ ${SHADOW(30,67.5,17)}
 <ellipse cx="30" cy="42" rx="19" ry="22" fill="url(#gNavy)"/>
 <ellipse cx="30" cy="46.5" rx="13" ry="16.5" fill="url(#gSnow)" stroke-width="1.2"/>
 <path d="M15 26 C14 10 22 3 30 3 C38 3 46 10 45 26Z" fill="url(#gAcc)"/>
-<ellipse cx="30" cy="26" rx="16" ry="4.2" fill="url(#gSnow)"/>
-<circle cx="30" cy="3" r="4" fill="url(#gSnow)"/>
+<ellipse class="xm" cx="30" cy="26" rx="16" ry="4.2" fill="url(#gSnow)"/>
+<circle class="xm" cx="30" cy="3" r="4" fill="url(#gSnow)"/>
 </g>
 <circle cx="24" cy="35" r="2.1" fill="#3A2A25"/><circle cx="36" cy="35" r="2.1" fill="#3A2A25"/>
 <circle cx="24.7" cy="34.3" r=".75" fill="#fff"/><circle cx="36.7" cy="34.3" r=".75" fill="#fff"/>
@@ -415,9 +477,16 @@ ${sdeer(232)}${sdeer(165)}
 <ellipse cx="78.2" cy="14.4" rx="2.2" ry="1.5" fill="#FF8FA0" opacity=".6"/><ellipse cx="89.8" cy="14.4" rx="2.2" ry="1.5" fill="#FF8FA0" opacity=".6"/>
 <path d="M18 16 C22 12 28 12 31 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
 </svg>`;
-const XM = {'2026-12-24':'🎄 平安夜','2026-12-25':'🎅 聖誕節'};
+const xmasTag = date => { const md = date.slice(5); return md === '12-24' ? '🎄 平安夜' : md === '12-25' ? '🎅 聖誕節' : ''; };
+const SEASON_FOOT = {
+  spring:() => `${bear(46,0)}${ic('sakura',54)}${ic('dango',54)}${ic('sakura',40)}${penguin(46,-.8)}`,
+  summer:() => `${penguin(46,0)}${ic('kakigori',52)}${ic('sun',58)}${ic('icecream',52)}${bear(46,-.8)}`,
+  autumn:() => `${reindeer(46,0)}${ic('maple',54)}${ic('matcha',54)}${ic('ginkgo',50)}${bear(46,-.8)}`,
+};
 const DAYI = ['plane','globe','train','umbrella','deer','car','suitcase'];
-const NUM = ['一','二','三','四','五','六','七'];
+const NUM0 = ['一','二','三','四','五','六','七','八','九','十'];
+const numZh = n => { if (n <= 10) return NUM0[n - 1]; if (n < 20) return '十' + NUM0[n - 11]; if (n % 10 === 0) return NUM0[Math.floor(n / 10) - 1] + '十'; return NUM0[Math.floor(n / 10) - 1] + '十' + NUM0[n % 10 - 1]; };
+const NUM = new Proxy([], {get(_, k){ const i = +k; return Number.isInteger(i) && i >= 0 ? numZh(i + 1) : undefined; }});
 const WK = '日一二三四五六';
 const uid = () => Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-3);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -452,10 +521,13 @@ async function rget(p){ const r = await fetch(url(p), {cache:'no-store'}); if (!
 async function rput(p, v){ const r = await fetch(url(p), {method:'PUT', body:JSON.stringify(v)}); if (!r.ok) throw new Error(r.status); }
 
 let P, TD, MM;                 // 行程、待辦、備忘
+const TRIP_DEF = {title:'大阪・京都', sub:'KYOTO', hello:'おこしやす', short:'大阪京都', cities:['大阪', '京都', '奈良']};
+const TRIP = () => ({...TRIP_DEF, ...(P && P.trip ? P.trip : {}), cities: (P && P.trip && arr(P.trip.cities).length) ? arr(P.trip.cities) : TRIP_DEF.cities.slice()});
 let status = online ? '連線中…' : '未設定雲端';
 let lastRaw = '';
 const norm = () => {
   P.members = arr(P.members);
+  if (P.trip) P.trip = {...P.trip, cities: arr(P.trip.cities)};
   P.days = arr(P.days).map(d => ({...d, items: arr(d.items).map(i => ({...i, who: arr(i.who)}))}));
   P.wish = arr(P.wish).map(i => ({...i, who: arr(i.who)}));
   TD = arr(TD); MM = arr(MM);
@@ -473,7 +545,7 @@ async function pull(first){
       if (!first && raw === lastRaw){ status = '已同步'; renderHead(); return; }
       lastRaw = raw; P = p; TD = t; MM = m;
     }
-    norm(); status = '已同步'; writeCache();
+    norm(); status = '已同步'; writeCache(); applySeason();
     if (!(document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName))) render();
   } catch(e){ status = '連不上網路，顯示上次內容'; renderHead(); }
 }
@@ -484,18 +556,128 @@ async function push(what){
   catch(e){ status = '儲存失敗，請確認網路'; renderHead(); toast('儲存失敗，請確認網路後再試一次'); return false; }
 }
 
+/* ============ 區域、城市與距離（區域中心為概略座標，誤差約數百公尺）============ */
+const CITY0 = {'大阪':{lat:34.6937, lon:135.5023}, '京都':{lat:35.0116, lon:135.7681}, '奈良':{lat:34.6851, lon:135.8048}};
+const CPAL = ['#F5A623', '#A767D6', '#2FA67A', '#2C9BD6', '#E8508A', '#1A9E92', '#6A78E6', '#A8683A', '#7DB83A', '#EF5B72'];
+const CITY = new Proxy({}, {
+  get(_, k){ if (typeof k !== 'string') return undefined; const list = TRIP().cities, i = list.indexOf(k); if (i < 0) return undefined; return {...(CITY0[k] || {lat:null, lon:null}), c:CPAL[i % CPAL.length]}; },
+  has(_, k){ return TRIP().cities.includes(k); },
+  ownKeys(){ return TRIP().cities.slice(); },
+  getOwnPropertyDescriptor(_, k){ return TRIP().cities.includes(k) ? {enumerable:true, configurable:true} : undefined; }
+});
+const CITYKEY0 = {'大阪':['大阪','おおさか','osaka'], '京都':['京都','きょうと','kyoto'], '奈良':['奈良','nara']};
+const CITYKEY = new Proxy({}, {
+  get(_, k){ if (typeof k !== 'string' || !TRIP().cities.includes(k)) return undefined; return CITYKEY0[k] || [k]; },
+  has(_, k){ return TRIP().cities.includes(k); },
+  ownKeys(){ return TRIP().cities.slice(); },
+  getOwnPropertyDescriptor(_, k){ return TRIP().cities.includes(k) ? {enumerable:true, configurable:true} : undefined; }
+});
+// [城市, 關鍵字（用 | 分隔）, 緯度, 經度, 顯示名稱, 是否放進「附近有什麼」的常用地區]
+const AREA = [
+  ['大阪','梅田|大阪駅|大阪站|うめだ|umeda|阪急',34.7050,135.4985,'梅田',1],
+  ['大阪','道頓堀|道頓崛|どうとんぼり|dotonbori',34.6687,135.5013,'道頓堀',1],
+  ['大阪','難波|なんば|namba|難波',34.6659,135.5010,'難波',1],
+  ['大阪','心齋橋|心斎橋|しんさいばし|shinsaibashi',34.6735,135.5010,'心齋橋',1],
+  ['大阪','新世界|通天閣|しんせかい',34.6525,135.5063,'新世界',1],
+  ['大阪','天王寺|てんのうじ|あべの|阿倍野',34.6466,135.5142,'天王寺',1],
+  ['大阪','環球影城|環球|ユニバ|usj|此花',34.6654,135.4323,'環球影城',1],
+  ['大阪','黑門|黒門',34.6620,135.5065,'黑門市場',0],
+  ['大阪','日本橋|でんでんタウン',34.6660,135.5064,'日本橋',0],
+  ['大阪','鶴橋|つるはし',34.6652,135.5340,'鶴橋',0],
+  ['大阪','天滿|天満|てんま',34.7052,135.5116,'天滿',0],
+  ['大阪','堂島|北新地|どうじま',34.6980,135.4960,'北新地',0],
+  ['大阪','中之島|なかのしま',34.6930,135.4960,'中之島',0],
+  ['大阪','大阪城|おおさかじょう',34.6873,135.5262,'大阪城',0],
+  ['大阪','關西機場|關西國際|関西国際|関空|りんくう',34.4320,135.2304,'關西機場',0],
+  ['京都','京都駅|京都車站|京都站|京都塔|京都タワー',34.9858,135.7588,'京都駅',1],
+  ['京都','河原町|かわらまち|寺町|新京極|京極',35.0040,135.7685,'河原町',1],
+  ['京都','祇園|ぎおん|花見小路|白川',35.0037,135.7750,'祇園',1],
+  ['京都','清水寺|清水坂|清水道|清水五條|清水店|産寧坂|二年坂|二寧坂|三年坂|石塀小路|石塀|圓山|円山|八坂',34.9990,135.7815,'清水・八坂',1],
+  ['京都','錦市場|錦小路|にしき',35.0050,135.7650,'錦市場',1],
+  ['京都','四條|四条|烏丸|からすま',35.0035,135.7630,'四條烏丸',0],
+  ['京都','嵐山|あらしやま|渡月橋|天龍寺|天龍|嵯峨|竹林|トロッコ',35.0110,135.6740,'嵐山',1],
+  ['京都','金閣寺|金閣|鹿苑寺',35.0394,135.7292,'金閣寺',0],
+  ['京都','銀閣|哲學之道|哲学の道',35.0270,135.7980,'銀閣寺',0],
+  ['京都','伏見|稻荷|稲荷|ふしみ',34.9671,135.7727,'伏見稻荷',0],
+  ['京都','三十三間堂',34.9879,135.7720,'三十三間堂',0],
+  ['京都','東寺|教王護國',34.9806,135.7477,'東寺',0],
+  ['京都','先斗町|ぽんとちょう|鴨川',35.0059,135.7706,'先斗町',0],
+  ['京都','二條城|二条城|二條',35.0142,135.7480,'二條城',0],
+  ['京都','龜岡|亀岡|かめおか',35.0105,135.5835,'龜岡',0],
+  ['奈良','奈良公園|東大寺|大仏|大佛|春日大社|春日|若草山|鹿仙貝|奈良の鹿',34.6870,135.8420,'奈良公園',1],
+  ['奈良','奈良町|ならまち|近鐵奈良|近鉄奈良|奈良駅|奈良站|興福寺|東向|三条通',34.6810,135.8290,'奈良町',1],
+];
+const NEARCHIPS = AREA.map((a, i) => ({a, i})).filter(x => x.a[5]);
+const nearChips = () => NEARCHIPS.filter(x => TRIP().cities.includes(x.a[0]));
+const hav = (a, b) => { const R = 6371, r = Math.PI / 180, dLa = (b.lat - a.lat) * r, dLo = (b.lon - a.lon) * r;
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+const fmtKm = k => k < 1 ? `${Math.max(50, Math.round(k * 20) * 50)} 公尺` : `${k < 10 ? k.toFixed(1) : Math.round(k)} 公里`;
+const NOTPLACE = /大阪燒|大阪焼|大阪王將|大阪王将|大阪壽司|大阪寿司|大阪烧|京都拉麵|京都ラーメン|奈良漬/g;
+function posOf(it){
+  const txt = ((it.title || '') + ' ' + (it.map || '') + ' ' + (it.note || '')).replace(NOTPLACE, ' ').toLowerCase();
+  let pos = null;
+  if (!pos){
+    let best = null;
+    for (const a of AREA) { if (!TRIP().cities.includes(a[0])) continue; for (const k of a[1].split('|')){ if (txt.includes(k.toLowerCase()) && (!best || k.length > best.len)) best = {len:k.length, a}; } }
+    if (best) pos = {lat:best.a[2], lon:best.a[3], src:'地區', label:best.a[4], city:best.a[0]};
+  }
+  if (!pos){
+    for (const c of Object.keys(CITYKEY)) if (CITYKEY[c].some(k => txt.includes(k.toLowerCase()))){ pos = CITY[c].lat != null ? {lat:CITY[c].lat, lon:CITY[c].lon, src:'城市', label:c, city:c} : {lat:null, lon:null, src:'標籤', label:c, city:c}; break; }
+  }
+  if (it.city && CITY[it.city] && (!pos || pos.city !== it.city)) pos = CITY[it.city].lat != null ? {lat:CITY[it.city].lat, lon:CITY[it.city].lon, src:'城市', label:it.city, city:it.city} : {lat:null, lon:null, src:'標籤', label:it.city, city:it.city};
+  if (pos && !pos.city && pos.lat != null){ let b = null, bk = 1e9; for (const c of Object.keys(CITY)){ if (CITY[c].lat == null) continue; const k = hav(pos, CITY[c]); if (k < bk){ bk = k; b = c; } } if (bk < 45) pos.city = b; }
+  return pos;
+}
+function cityOf(it){ if (it.city === '其他') return ''; const p = posOf(it); return p && p.city ? p.city : ''; }
+const cityTag = c => c ? `<span class="ctag" style="--cc:${CITY[c] ? CITY[c].c : '#888'}">${esc(c)}</span>` : '<span class="ctag" style="--cc:#888">未分類</span>';
+const shortT = t => { t = String(t || '').replace(/^\d{1,2}:\d{2}\s*/, ''); return t.length > 14 ? t.slice(0, 13) + '…' : t; };
+function cityDays(c){
+  const keys = (CITYKEY[c] || [c]).map(k => String(k).toLowerCase());
+  const hit = t => keys.some(k => String(t || '').toLowerCase().includes(k));
+  const today = todayStr(), last = P.days[P.days.length - 1].date, started = today >= P.days[0].date && today <= last;
+  const rows = [];
+  for (const d of P.days){
+    if (started && d.date < today) continue;
+    let n = 0, near = '';
+    for (const x of d.items) if (hit(x.title) || hit(x.map) || hit(x.note)){ n++; if (!near) near = x.title; }
+    if (hit(d.title)){ n += 2; if (!near) near = d.title; }
+    if (n) rows.push({d, n, near});
+  }
+  return rows.sort((a, b) => b.n - a.n || a.d.n - b.d.n);
+}
+function recommend(it){
+  const p = posOf(it); if (!p) return null;
+  if (p.lat == null) return {p, rows:cityDays(p.city), noGeo:true};
+  const today = todayStr(), last = P.days[P.days.length - 1].date, started = today >= P.days[0].date && today <= last;
+  const rows = [];
+  for (const d of P.days){
+    if (started && d.date < today) continue;
+    let a = d.items.map(x => ({x, p:posOf(x)})).filter(r => r.p && r.p.lat != null);
+    const precise = a.filter(r => r.p.src !== '城市'); if (precise.length) a = precise;
+    if (!a.length) continue;
+    let best = null; for (const r of a){ const k = hav(p, r.p); if (!best || k < best.k) best = {k, near:r.x.title}; }
+    rows.push({d, k:best.k, near:best.near});
+  }
+  rows.sort((x, y) => x.k - y.k);
+  return {p, rows:rows.slice(0, 2)};
+}
+
 /* ============ 畫面狀態 ============ */
 let tab = 'plan';
 let edit = localStorage.getItem('okt-edit') === '1';
 let big = localStorage.getItem('okt-big') === '1';
 document.documentElement.classList.toggle('big', big);
-let draft = null, toastTimer = null;
+let draft = null, toastTimer = null, wishF = '全部', nearPos = null, nearTitle = '', nearCityF = null;
 
 const mIdx = id => P.members.findIndex(m => m.id === id);
-const mcolor = id => COLORS[Math.max(0, mIdx(id)) % COLORS.length];
+const mcolor = id => { const i = mIdx(id); const m = P.members[i]; return COLORS[((m && m.c != null) ? m.c : Math.max(0, i)) % COLORS.length]; };
+function ensureColors(){ P.members.forEach((m, i) => { if (m.c == null) m.c = i % COLORS.length; }); }
+function nextColor(){ const used = P.members.map(m => m.c); for (let k = 0; k < COLORS.length; k++) if (!used.includes(k)) return k; return P.members.length % COLORS.length; }
 const whoChips = ids => ids.filter(id => mIdx(id) >= 0).map(id => `<span><span class="dot" style="background:${mcolor(id)}"></span> ${esc(P.members[mIdx(id)].name)}</span>`).join('');
 const dt = d => new Date(d.date + 'T00:00:00');
 const dayLabel = d => `${dt(d).getMonth()+1}/${dt(d).getDate()}（${WK[dt(d).getDay()]}）`;
+const ymd = dd => `${dd.getFullYear()}-${String(dd.getMonth()+1).padStart(2,'0')}-${String(dd.getDate()).padStart(2,'0')}`;
+const addDays = (str, n) => { const d = new Date(str + 'T00:00:00'); d.setDate(d.getDate() + n); return ymd(d); };
 const todayStr = () => { const t = new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`; };
 const findItem = id => { for (const d of P.days){ const i = d.items.findIndex(x => x.id === id); if (i >= 0) return {list:d.items, i, day:d.n, it:d.items[i]}; } const i = P.wish.findIndex(x => x.id === id); return i >= 0 ? {list:P.wish, i, day:0, it:P.wish[i]} : null; };
 
@@ -503,25 +685,29 @@ const findItem = id => { for (const d of P.days){ const i = d.items.findIndex(x 
 function renderHead(){
   const el = $('head');
   if (tab !== 'plan'){
-    el.innerHTML = `<div class="wrap top2"><div class="mini">${ic(tab==='todo'?'check':'note',36)}<h1 class="round">${tab==='todo'?'待辦事項':'備忘錄'}</h1><span style="margin-left:auto">${editBtn()}</span></div></div>`;
+    el.innerHTML = `<div class="wrap top2"><div class="mini">${ic(tab==='todo'?'check':tab==='set'?'gear':'note',36)}<h1 class="round">${tab==='todo'?'待辦事項':tab==='set'?'設定':'備忘錄'}</h1><span style="margin-left:auto">${editBtn()}</span></div></div>`;
     return;
   }
   const a = dt(P.days[0]), b = dt(P.days[P.days.length-1]), t = new Date(todayStr()+'T00:00:00');
   const c = t < a ? `距離出發還有<b>${Math.round((a-t)/864e5)}</b>天` : t <= b ? `旅行第<b>${Math.round((t-a)/864e5)+1}</b>天` : '旅程結束，歡迎回家';
+  const S = SE(), D = S.deco, T = TRIP();
+  const f0 = dt(P.days[0]), f1 = dt(P.days[P.days.length - 1]);
+  const range = f0.getMonth() === f1.getMonth() ? `${f0.getMonth() + 1}/${f0.getDate()}–${f1.getDate()}` : `${f0.getMonth() + 1}/${f0.getDate()}–${f1.getMonth() + 1}/${f1.getDate()}`;
+  const mascot = {bear, penguin, reindeer, snowman}[S.mascot](62);
   el.innerHTML = `<div class="wrap"><div class="art">
     <svg class="blob" viewBox="0 0 360 170" preserveAspectRatio="none"><path d="M18 78 C8 34 70 6 130 14 C190 -2 290 8 330 46 C358 74 322 142 250 150 C190 168 90 160 44 128 C26 114 20 96 18 78Z"/></svg>
-    <span class="dc" style="left:0;top:2px;transform:rotate(-14deg)">${ic('fan',60)}</span>
-    <span class="dc" style="left:33%;top:-6px">${ic('flake',44)}</span>
-    <span class="dc" style="left:52%;top:8px;transform:rotate(20deg)">${ic('flake',28)}</span>
-    <span class="dc" style="right:0;top:0">${ic('torii',58)}</span>
-    <span class="dc" data-act="santa" style="left:1%;bottom:-8px;pointer-events:auto;cursor:pointer">${snowman(62)}</span>
-    <span class="dc" style="left:24%;bottom:-6px">${ic('dango',50)}</span>
-    <span class="dc" style="left:47%;bottom:-6px">${ic('nabe',50)}</span>
-    <span class="dc" style="right:1%;bottom:-8px">${ic('pagoda',70)}</span>
-    <span class="dc" style="right:1%;top:44%;transform:rotate(12deg)">${ic('nanten',40)}</span>
-    <div class="ttl round"><div class="oko hand">おこしやす</div><h1>大阪・京都</h1><div class="kyo hand">KYOTO WINTER 12/23–29</div></div>
+    <span class="dc" style="left:0;top:2px;transform:rotate(-14deg)">${ic(D.L,60)}</span>
+    <span class="dc" style="left:33%;top:-6px">${ic(D.T1,44)}</span>
+    <span class="dc" style="left:52%;top:8px;transform:rotate(20deg)">${ic(D.T2,28)}</span>
+    <span class="dc" style="right:0;top:0">${ic(D.R,58)}</span>
+    <span class="dc" data-act="santa" style="left:1%;bottom:-8px;pointer-events:auto;cursor:pointer">${mascot}</span>
+    <span class="dc" style="left:24%;bottom:-6px">${ic(D.B1,50)}</span>
+    <span class="dc" style="left:47%;bottom:-6px">${ic(D.B2,50)}</span>
+    <span class="dc" style="right:1%;bottom:-8px">${ic(D.BR,70)}</span>
+    <span class="dc" style="right:1%;top:44%;transform:rotate(12deg)">${ic(D.M,40)}</span>
+    <div class="ttl round"><div class="oko hand">${esc(T.hello)}</div><h1>${esc(T.title)}</h1><div class="kyo hand">${esc(T.sub)} ${SEASONW[seasonKey()]} ${range}</div></div>
   </div>
-  <div class="infobar"><span class="cnt">${c}</span><span class="btns"><span class="small">${esc(status)}</span><button class="${snowOn?'on':''}" data-act="snow">❄ ${snowOn?'下雪中':'雪停了'}</button><button data-act="font">字級：${big?'大':'中'}</button>${editBtn()}</span></div>
+  <div class="infobar"><span class="cnt">${c}</span><span class="btns"><span class="small">${esc(status)}</span><button class="sbtn ${snowOn?'on':''}" data-act="snow">${S.e} ${snowOn?S.fallOn:S.fallOff}</button><button data-act="font">字級：${big?'大':'中'}</button>${editBtn()}</span></div>
   ${online ? '' : '<div class="banner">還沒設定雲端資料庫，目前修改只存在這支手機，別人看不到。</div>'}</div>`;
 }
 const editBtn = () => `<button class="${edit?'on':''}" data-act="editmode">${edit?'編輯中（點此結束）':'編輯'}</button>`;
@@ -534,25 +720,60 @@ function renderStick(){
   document.documentElement.style.setProperty('--stick', el.offsetHeight + 'px');
 }
 
-function itemHTML(it){
+function itemHTML(it, wish){
   const b = [];
   if (it.nt) b.push(`<button class="primary" data-act="view" data-id="${it.id}">${ic('ticket',22)}看票券（${it.nt}）</button>`);
   if (it.map) b.push(`<button data-act="map" data-id="${it.id}">${ic('pin',20)}地圖</button>`);
   if (edit) b.push(`<button data-act="edit" data-id="${it.id}">編輯</button><button class="danger" data-act="del" data-id="${it.id}">刪除</button><button class="ghost" data-act="up" data-id="${it.id}">▲</button><button class="ghost" data-act="down" data-id="${it.id}">▼</button>`);
-  return `<div class="item"><div class="title">${esc(it.title)}</div>
+  let rec = '';
+  if (wish){
+    const r = recommend(it);
+    if (!r) rec = `<div class="rec weak">還判斷不出在哪個城市。${edit ? '按「編輯」選城市，或在名稱裡加上城市名或地區名。' : '請在編輯模式選城市。'}</div>`;
+    else if (r.noGeo){
+      const c = r.p.label;
+      if (!r.rows.length) rec = `<div class="rec weak">這幾天的行程裡還沒有提到「${esc(c)}」，所以沒辦法推薦。先放著，決定要去時，按「編輯」選日期就好。</div>`;
+      else {
+        const t = r.rows[0];
+        rec = `<div class="rec"><b>推薦排在第${NUM[t.d.n - 1]}天</b>（${esc(t.d.title)}）<br>這天已經有 ${t.n} 項和「${esc(c)}」有關，例如「${esc(shortT(t.near))}」${r.rows[1] ? `<br><span class="small">第二選擇：第${NUM[r.rows[1].d.n - 1]}天（${r.rows[1].n} 項）</span>` : ''}
+          ${edit ? `<div class="btns2"><button class="primary" data-act="today" data-id="${it.id}" data-day="${t.d.n}">排進第${NUM[t.d.n - 1]}天</button></div>` : ''}</div>`;
+      }
+    }
+    else if (!r.rows.length) rec = '';
+    else {
+      const t = r.rows[0], far = t.k > 25;
+      const approx = r.p.src === '城市' ? '（只知道城市，距離很粗略）' : '';
+      rec = `<div class="rec"><b>推薦排在第${NUM[t.d.n - 1]}天</b>（${esc(t.d.title)}）<br>${far ? '這幾天離這裡都比較遠，最近的也' : ''}約 ${fmtKm(t.k)}，離「${esc(shortT(t.near))}」最近${approx}${r.rows[1] ? `<br><span class="small">第二選擇：第${NUM[r.rows[1].d.n - 1]}天，約 ${fmtKm(r.rows[1].k)}</span>` : ''}
+        ${edit ? `<div class="btns2"><button class="primary" data-act="today" data-id="${it.id}" data-day="${t.d.n}">排進第${NUM[t.d.n - 1]}天</button></div>` : ''}</div>`;
+    }
+  }
+  const c = wish ? cityTag(cityOf(it)) : '';
+  return `<div class="item"><div class="title">${c}${esc(it.title)}</div>
     ${it.note ? `<div class="note">${esc(it.note)}</div>` : ''}
     ${it.who.length ? `<div class="who">${whoChips(it.who)}</div>` : ''}
+    ${rec}
     ${b.length ? `<div class="btns2">${b.join('')}</div>` : ''}</div>`;
 }
 function viewPlan(){
   const days = P.days.map(d => `<section class="day ${d.date===todayStr()?'today':''}" id="day-${d.n}">
-    <div class="dayh"><div class="row1"><span class="badge hand">DAY ${d.n}</span><span class="n round">第${NUM[d.n-1]}天</span><span class="d">${dayLabel(d)}</span>${XM[d.date] ? `<span class="xtag">${XM[d.date]}</span>` : ''}</div><div class="t">${esc(d.title)}</div><span class="dic">${ic(DAYI[d.n-1],52)}</span></div>
-    <div class="items">${d.items.map(itemHTML).join('') || '<div class="empty">還沒有項目</div>'}</div>
+    <div class="dayh"><div class="row1"><span class="badge hand">DAY ${d.n}</span><span class="n round">第${NUM[d.n-1]}天</span><span class="d">${dayLabel(d)}</span>${xmasTag(d.date) && seasonKey() === 'winter' ? `<span class="xtag">${xmasTag(d.date)}</span>` : ''}</div><div class="t">${esc(d.title)}</div><span class="dic">${ic(DAYI[(d.n-1) % DAYI.length],52)}</span></div>
+    <div class="items">${d.items.map(x => itemHTML(x, false)).join('') || '<div class="empty">還沒有項目</div>'}</div>
     ${edit ? `<div class="dayfoot"><button class="primary" data-act="add" data-day="${d.n}">＋ 新增</button><button data-act="daytitle" data-day="${d.n}">改當天標題</button></div>` : ''}</section>`).join('');
+  const WORDER = [...TRIP().cities, ''];
+  const wcity = it => cityOf(it);
+  const wcount = {}; P.wish.forEach(it => { const k = wcity(it) || '其他'; wcount[k] = (wcount[k] || 0) + 1; });
+  if (wishF !== '全部' && !wcount[wishF]) wishF = '全部';
+  const wl = P.wish.map((it, i) => ({it, i})).filter(r => wishF === '全部' || (wcity(r.it) || '其他') === wishF)
+    .sort((a, b) => WORDER.indexOf(wcity(a.it)) - WORDER.indexOf(wcity(b.it)) || a.i - b.i).map(r => r.it);
+  const wchips = P.wish.length ? `<div class="chips"><button class="chip pk ${wishF === '全部' ? 'on' : ''}" data-act="wfilter" data-id="全部">全部 ${P.wish.length}</button>` +
+    [...TRIP().cities, '其他'].filter(k => wcount[k]).map(k => `<button class="chip pk ${wishF === k ? 'on' : ''}" data-act="wfilter" data-id="${k}">${k} ${wcount[k]}</button>`).join('') + `</div>` : '';
   const wish = `<section class="day" id="day-0"><div class="dayh"><div class="row1"><span class="badge hand">WISH</span><span class="n round">想去・想吃</span></div><div class="t">還沒決定哪天的先放這裡</div><span class="dic">${ic('nabe',50)}</span></div>
-    <div class="items">${P.wish.map(itemHTML).join('') || '<div class="empty">想吃的餐廳、想去的地方先放這裡。決定後按「編輯」選日期，就會移到那天。</div>'}</div>
+    <div class="wtools"><button class="primary nearbtn" data-act="near">${ic('pin',22)}附近有什麼可以吃？</button>${wchips}</div>
+    <div class="items">${wl.map(x => itemHTML(x, true)).join('') || '<div class="empty">想吃的餐廳、想去的地方先放這裡。決定後按「編輯」選日期，就會移到那天。</div>'}</div>
     ${edit ? `<div class="dayfoot"><button class="primary" data-act="add" data-day="0">＋ 新增</button></div>` : ''}</section>`;
-  const foot = `<div class="xmas"><div class="row">${snowman(44,0)}${elf(44,-.5)}<button class="treebtn" data-act="tree" aria-label="聖誕樹">${treeSvg(92)}</button>${reindeer(46,-1)}${snowman(40,-1.5)}</div><div class="hand">點聖誕樹、點選單上的小人，有驚喜！🎁</div><div class="hand" style="margin-top:2px">Merry Christmas！🎄</div></div>`;
+  const sk = seasonKey();
+  const foot = sk === 'winter'
+    ? `<div class="xmas"><div class="row">${snowman(44,0)}${elf(44,-.5)}<button class="treebtn" data-act="tree" aria-label="聖誕樹">${treeSvg(92)}</button>${reindeer(46,-1)}${snowman(40,-1.5)}</div><div class="hand">點聖誕樹、點選單上的小人，有驚喜！🎁</div><div class="hand" style="margin-top:2px">Merry Christmas！🎄</div></div>`
+    : `<div class="xmas"><div class="row">${SEASON_FOOT[sk]()}</div><div class="hand">${SE().e} ${SE().n}天快樂！點選單上的小人，他們會說話喔</div></div>`;
   return days + wish + foot;
 }
 function viewTodo(){
@@ -566,19 +787,41 @@ function viewMemo(){
     ${edit ? `<div class="addrow"><button class="primary" style="flex:1" data-act="memoadd">＋ 新增備忘</button></div>` : ''}
     ${MM.map(m => `<div class="memo"><h3 class="round">${esc(m.title)}</h3><div class="body">${esc(m.body)}</div>
       ${edit ? `<div class="btns2"><button data-act="memoedit" data-id="${m.id}">編輯</button><button class="danger" data-act="memodel" data-id="${m.id}">刪除</button></div>` : ''}</div>`).join('') || '<div class="empty">還沒有備忘</div>'}
-    <h2 style="font-size:1.1rem;margin-top:24px">旅伴</h2>
-    ${P.members.map(m => `<div class="todo"><span class="dot" style="background:${mcolor(m.id)};width:1em;height:1em"></span><div class="tx">${esc(m.name)}</div>${edit ? `<button data-act="rename" data-id="${m.id}">改名</button>` : ''}</div>`).join('')}${walkerSettings()}</div>`;
+  </div>`;
+}
+function viewSettings(){
+  const T = TRIP(), d0 = P.days[0].date;
+  return `<div class="page">
+    <div class="small">這裡的設定，標題、日期、城市、旅伴會同步給所有人；季節和小人只改這支手機。</div>
+    <h2 class="round" style="font-size:1.1rem;margin-top:18px">旅程</h2>
+    <div class="memo"><div class="small">大標題</div><div style="font-size:1.15rem;font-weight:800">${esc(T.title)}</div>
+      <div class="small" style="margin-top:6px">小標題・歡迎詞</div><div>${esc(T.sub)}　${esc(T.hello)}</div>
+      <div class="small" style="margin-top:6px">日期</div><div>${d0} 起，共 ${P.days.length} 天</div>
+      <div class="btns2"><button class="primary" data-act="tripedit">修改旅程設定</button></div></div>
+    <h2 class="round" style="font-size:1.1rem;margin-top:24px">城市分類</h2>
+    <div class="small">「想去・想吃」會用這些城市分類。</div>
+    ${T.cities.map((c, i) => `<div class="todo"><span class="dot" style="background:${CPAL[i % CPAL.length]};width:1em;height:1em"></span><div class="tx">${esc(c)}${CITY0[c] ? '' : ' <span class="small">（自訂）</span>'}</div><button data-act="cityedit" data-id="${i}">改名</button><button class="danger" data-act="citydel" data-id="${i}">刪除</button></div>`).join('') || '<div class="empty">還沒有城市</div>'}
+    <div class="addrow"><button class="primary" style="flex:1" data-act="cityadd">＋ 新增城市</button><button data-act="cityreset">恢復關西</button></div>
+    <h2 class="round" style="font-size:1.1rem;margin-top:24px">旅伴</h2>
+    ${P.members.map(m => `<div class="todo"><span class="dot" style="background:${mcolor(m.id)};width:1em;height:1em"></span><div class="tx">${esc(m.name)}</div><button data-act="rename" data-id="${m.id}">改名</button><button class="danger" data-act="memberdel" data-id="${m.id}">刪除</button></div>`).join('')}
+    <div class="addrow"><button class="primary" style="flex:1" data-act="memberadd">＋ 新增旅伴</button></div>
+    ${seasonSettings()}${walkerSettings()}
+    <h2 class="round" style="font-size:1.1rem;margin-top:24px">開始新旅程</h2>
+    <div class="small">會把所有日子的行程、想去・想吃、票券清空，換成空白的新旅程。旅伴、城市和外觀設定會保留。待辦和備忘不會動。</div>
+    <div class="btns2"><button class="danger" data-act="newtrip">清空並開始新旅程</button></div>
+  </div>`;
 }
 function renderNav(){
   const n = TD.filter(t => !t.done).length;
   $('nav').innerHTML = `<button class="${tab==='plan'?'on':''}" data-act="tab" data-id="plan">${ic('torii',28)}行程</button>
     <button class="${tab==='todo'?'on':''}" data-act="tab" data-id="todo">${ic('check',28)}<span>待辦${n?`<span class="bd">${n}</span>`:''}</span></button>
-    <button class="${tab==='memo'?'on':''}" data-act="tab" data-id="memo">${ic('note',28)}備忘</button>`;
+    <button class="${tab==='memo'?'on':''}" data-act="tab" data-id="memo">${ic('note',28)}備忘</button>
+    <button class="${tab==='set'?'on':''}" data-act="tab" data-id="set">${ic('gear',28)}設定</button>`;
 }
 function render(){
   const y = window.scrollY;
   renderHead(); renderStick(); renderNav();
-  $('app').innerHTML = tab === 'plan' ? viewPlan() : tab === 'todo' ? viewTodo() : viewMemo();
+  $('app').innerHTML = tab === 'plan' ? viewPlan() : tab === 'todo' ? viewTodo() : tab === 'set' ? viewSettings() : viewMemo();
   window.scrollTo(0, y); onScroll();
 }
 function onScroll(){
@@ -608,6 +851,7 @@ async function openEdit(id, day = 1){
     <label>名稱（時間可直接寫在前面，例如 11:30 午餐）</label><input id="f-title" value="${esc(it.title)}">
     <label>備註（可不填）</label><textarea id="f-note">${esc(it.note)}</textarea>
     <label>地圖地點（填了，就會出現「地圖」按鈕）</label><input id="f-map" value="${esc(it.map)}" placeholder="例如：清水寺、一蘭 道頓堀店">
+    <label>城市（想去・想吃會用它分類；不選會自動判斷）</label><select id="f-city">${['', ...TRIP().cities, '其他'].map(c => `<option value="${c}" ${(it.city || '') === c ? 'selected' : ''}>${c || '自動判斷'}</option>`).join('')}</select>
     <label>誰（住這間／一起去，不選就是全部人）</label>
     <div class="pick" id="f-who">${P.members.map(m => `<button type="button" class="chip pk ${it.who.includes(m.id)?'on':''}" data-act="pickwho" data-id="${m.id}"><span class="dot" style="background:${mcolor(m.id)}"></span> ${esc(m.name)}</button>`).join('')}</div>
     <label>票券</label><div id="f-tk" class="small">載入中…</div>
@@ -650,6 +894,7 @@ async function saveEdit(){
   const title = $('f-title').value.trim();
   if (!title){ toast('請輸入名稱'); return; }
   const it = draft.it, newDay = +$('f-day').value;
+  const cv = $('f-city').value; if (cv) it.city = cv; else delete it.city;
   Object.assign(it, {title, note:$('f-note').value.trim(), map:$('f-map').value.trim(), nt:draft.tickets.length,
     who:[...document.querySelectorAll('#f-who .chip.on')].map(b => b.dataset.id)});
   if (draft.isNew) (newDay ? P.days.find(d => d.n === newDay).items : P.wish).push(it);
@@ -666,7 +911,7 @@ async function saveEdit(){
 function textModal(title, fields, onOk){
   openModal(`<h3>${title}</h3>${fields.map((f,i) => `<label>${f.label}</label>${f.area ? `<textarea id="t-${i}" style="min-height:10em">${esc(f.value)}</textarea>` : `<input id="t-${i}" value="${esc(f.value)}">`}`).join('')}
     <div class="actions"><button data-act="mclose">取消</button><button class="primary" data-act="tok">儲存</button></div>`);
-  textModal.ok = async () => { const v = fields.map((_,i) => $('t-'+i).value.trim()); if (!v[0]){ toast('請輸入內容'); return; } const what = onOk(v); closeModal(); render(); await push(what); };
+  textModal.ok = async () => { const v = fields.map((_,i) => $('t-'+i).value.trim()); if (!v[0]){ toast('請輸入內容'); return; } const what = onOk(v); if (what === null){ closeModal(); render(); return; } closeModal(); render(); if (what) await push(what); };
 }
 
 /* ============ 票券檢視 ============ */
@@ -682,6 +927,100 @@ async function openViewer(id){
 }
 function closeViewer(){ $('viewer').classList.remove('show'); $('viewer').innerHTML = ''; document.body.style.overflow = ''; }
 
+/* ============ 旅程設定（標題、日期、天數、城市）============ */
+function openTripEdit(){
+  const T = TRIP(), n = P.days.length, d0 = P.days[0].date;
+  openModal(`<h3>旅程設定</h3>
+    <label>大標題（顯示在最上面）</label><input id="tr-title" value="${esc(T.title)}" placeholder="例如：北海道">
+    <label>小標題（英文或地名，可不填）</label><input id="tr-sub" value="${esc(T.sub)}" placeholder="例如：HOKKAIDO">
+    <label>歡迎詞（可不填）</label><input id="tr-hello" value="${esc(T.hello)}" placeholder="例如：ようこそ">
+    <label>手機桌面上顯示的短名稱（加到主畫面時用）</label><input id="tr-short" value="${esc(T.short)}" maxlength="12">
+    <div class="two2"><div><label>出發日期</label><input id="tr-date" type="date" value="${d0}"></div>
+    <div><label>天數（1–30）</label><input id="tr-n" type="number" min="1" max="30" value="${n}"></div></div>
+    <div class="small" style="margin-top:6px">改日期只會把每一天的日期往後排，行程內容不會動。天數變少時，多出來的天會被移除，裡面的項目會先移到「想去・想吃」，不會消失。</div>
+    <div class="actions"><button data-act="mclose">取消</button><button class="primary" data-act="tripsave">儲存</button></div>`);
+}
+async function saveTrip(){
+  const title = $('tr-title').value.trim();
+  if (!title){ toast('請輸入大標題'); return; }
+  const date = $('tr-date').value, n = Math.max(1, Math.min(30, parseInt($('tr-n').value, 10) || 0));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)){ toast('請選出發日期'); return; }
+  if (!$('tr-n').value || n !== parseInt($('tr-n').value, 10)){ toast('天數請輸入 1 到 30'); return; }
+  const dropping = P.days.length > n ? P.days.slice(n).reduce((a, d) => a + d.items.length, 0) : 0;
+  if (P.days.length > n && !confirm(`天數從 ${P.days.length} 天改成 ${n} 天，第 ${n + 1} 天之後會被移除。\n其中 ${dropping} 個項目會移到「想去・想吃」。\n確定嗎？`)) return;
+  const v = {title, sub:$('tr-sub').value.trim(), hello:$('tr-hello').value.trim(), short:$('tr-short').value.trim() || title.slice(0, 6)};
+  const t = TRIP();
+  await mutate('plan', () => {
+    P.trip = {...(P.trip || {}), ...v, cities: t.cities};
+    const moved = [];
+    if (P.days.length > n){ P.days.slice(n).forEach(d => moved.push(...d.items)); P.days = P.days.slice(0, n); }
+    while (P.days.length < n) P.days.push({n:P.days.length + 1, date:'', title:'新的一天', items:[]});
+    P.days.forEach((d, i) => { d.n = i + 1; d.date = addDays(date, i); });
+    if (moved.length) P.wish = P.wish.concat(moved);
+  });
+  closeModal(); render(); applySeason(); toast('旅程設定已儲存');
+}
+function cityList(){ return TRIP().cities.slice(); }
+async function setCities(list){
+  const t = TRIP();
+  await mutate('plan', () => { P.trip = {...(P.trip || {}), title:t.title, sub:t.sub, hello:t.hello, short:t.short, cities:list}; });
+}
+async function newTrip(){
+  const tkIds = [...P.days.flatMap(d => d.items), ...P.wish].filter(i => i.nt).map(i => i.id);
+  await mutate('plan', () => {
+    const n = P.days.length, d0 = P.days[0].date;
+    P.days = Array.from({length:n}, (_, i) => ({n:i + 1, date:addDays(d0, i), title:'新的一天', items:[]}));
+    P.wish = [];
+  });
+  if (online) await Promise.all(tkIds.map(id => rput('tickets/' + id, null).catch(() => {})));
+  window.scrollTo(0, 0); toast('已開始新旅程，記得到「設定」改標題和日期');
+}
+
+/* ============ 附近有什麼可以吃 ============ */
+function nearListHTML(){
+  if (nearCityF){
+    const list = P.wish.filter(it => cityOf(it) === nearCityF);
+    if (!list.length) return `<div class="nmsg">你還沒有存「${esc(nearCityF)}」的店。</div>`;
+    return `<div class="nmsg">「${esc(nearCityF)}」你存了 <b>${list.length}</b> 間。</div>` + list.map(it => `<div class="nrow"><div class="title">${cityTag(nearCityF)}${esc(it.title)}</div>${it.note ? `<div class="note">${esc(it.note)}</div>` : ''}${it.map ? `<div class="btns2"><button data-act="map" data-id="${it.id}">${ic('pin',20)}地圖</button></div>` : ''}</div>`).join('');
+  }
+  if (!nearPos) return '<div class="nmsg">選一個地區或城市，就會列出你存的店；按「用我的位置」，離你最近的排最前面。</div>';
+  const all = P.wish.map(it => ({it, p:posOf(it)}));
+  const withPos = all.filter(r => r.p && r.p.lat != null).map(r => ({...r, k:hav(nearPos, r.p)})).sort((a, b) => a.k - b.k);
+  const none = all.length - withPos.length;
+  const close = withPos.filter(r => r.k <= 3);
+  const show = close.length ? close.slice(0, 12) : withPos.slice(0, 3);
+  let head = '';
+  if (!all.length) head = '<div class="nmsg">你還沒有存任何想去・想吃的店。</div>';
+  else if (!withPos.length) head = '<div class="nmsg">存的店都判斷不出位置，請在編輯時選城市或在名稱加地區。</div>';
+  else if (!close.length) head = `<div class="nmsg">${esc(nearTitle)} 3 公里內沒有你存的店。最近的是 ${fmtKm(withPos[0].k)}。${withPos[0].k > 40 ? '你現在離這些店很遠，到了日本才會有附近的店；可以先選下方地區預覽。' : ''}</div>`;
+  else head = `<div class="nmsg">${esc(nearTitle)} 附近 3 公里內有 <b>${close.length}</b> 間。</div>`;
+  const rows = show.map(r => `<div class="nrow"><div class="title">${cityTag(r.p.city)}${esc(r.it.title)}</div>
+    <div class="d">約 ${fmtKm(r.k)}・${r.p.src === '城市' ? '只知道城市，距離很粗略' : '位置：' + esc(r.p.label)}</div>
+    ${r.it.note ? `<div class="note">${esc(r.it.note)}</div>` : ''}
+    ${r.it.map ? `<div class="btns2"><button data-act="map" data-id="${r.it.id}">${ic('pin',20)}地圖</button></div>` : ''}</div>`).join('');
+  return head + rows + (none ? `<div class="small" style="margin-top:8px">另有 ${none} 間判斷不出位置，沒有列入。</div>` : '') +
+    '<div class="small" style="margin-top:8px">距離是用地區中心估算的概略值，實際請以地圖為準。</div>';
+}
+function openNear(){
+  openModal(`<h3>附近有什麼可以吃？</h3>
+    <button class="primary" style="width:100%;margin-top:10px" data-act="neargps">${ic('pin',22)}用我的位置</button>
+    ${nearChips().length ? '<label>或選一個地區</label>' : ''}
+    <div class="pick">${nearChips().map(x => `<button class="chip pk ${nearTitle === x.a[4] ? 'on' : ''}" data-act="nearpick" data-id="${x.i}">${esc(x.a[4])}</button>`).join('')}</div>
+    <label>或看某個城市存的店</label>
+    <div class="pick">${TRIP().cities.map(c => `<button class="chip pk ${nearCityF === c ? 'on' : ''}" data-act="nearcity" data-id="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+    <div id="nearbody" style="margin-top:12px">${nearListHTML()}</div>
+    <div class="actions"><button data-act="mclose">關閉</button></div>`);
+}
+function nearRefresh(){ if (!$('nearbody')) return; $('nearbody').innerHTML = nearListHTML(); document.querySelectorAll('[data-act=nearpick]').forEach(b => b.classList.toggle('on', !nearCityF && nearTitle === AREA[+b.dataset.id][4])); document.querySelectorAll('[data-act=nearcity]').forEach(b => b.classList.toggle('on', nearCityF === b.dataset.id)); }
+function nearGps(){
+  if (!navigator.geolocation){ toast('這支手機沒辦法定位，請改選地區'); return; }
+  $('nearbody').innerHTML = '<div class="nmsg">定位中…請按「允許」</div>';
+  navigator.geolocation.getCurrentPosition(
+    pos => { nearPos = {lat:pos.coords.latitude, lon:pos.coords.longitude}; nearTitle = '你的位置'; nearCityF = null; nearRefresh(); },
+    () => { $('nearbody').innerHTML = '<div class="nmsg">沒有拿到位置。請到手機設定允許網頁使用定位，或直接選下方的地區。</div>'; },
+    {enableHighAccuracy:false, timeout:12000, maximumAge:60000});
+}
+
 /* ============ 操作 ============ */
 async function mutate(what, fn){ if (online) await pull(); fn(); render(); await push(what); }
 const move = (id, dir) => { const f = findItem(id); const j = f.i + dir; if (j < 0 || j >= f.list.length) return; [f.list[f.i], f.list[j]] = [f.list[j], f.list[f.i]]; };
@@ -692,16 +1031,37 @@ document.addEventListener('click', async e => {
   const a = b.dataset.act, id = b.dataset.id, D = b.dataset;
   switch(a){
     case 'tab': tab = id; render(); window.scrollTo(0,0); break;
+    case 'wfilter': wishF = id; render(); break;
+    case 'tripedit': openTripEdit(); break;
+    case 'tripsave': saveTrip(); break;
+    case 'cityadd': textModal('新增城市', [{label:'城市名稱（例如：札幌、函館、高松）', value:''}], v => { const nm = v[0].replace(/\s+/g, ' ').slice(0, 10); const l = cityList(); if (l.includes(nm)){ toast('已經有這個城市了'); return null; } l.push(nm); setTimeout(() => setCities(l), 0); return null; }); break;
+    case 'cityedit': { const l = cityList(), old = l[+id]; textModal('城市改名', [{label:'名稱', value:old}], v => { const nm = v[0].slice(0, 10); if (nm !== old && l.includes(nm)){ toast('已經有這個城市了'); return null; } l[+id] = nm; setTimeout(async () => { await mutate('plan', () => { const t = TRIP(); P.trip = {...(P.trip || {}), title:t.title, sub:t.sub, hello:t.hello, short:t.short, cities:l}; [...P.wish, ...P.days.flatMap(d => d.items)].forEach(i => { if (i.city === old) i.city = nm; }); }); }, 0); return null; }); break; }
+    case 'citydel': { const l = cityList(), nm = l[+id]; if (l.length <= 1){ toast('至少要留一個城市'); break; } if (confirm(`確定要刪除城市「${nm}」嗎？\n已經選了這個城市的店，會變成「其他」。`)) { l.splice(+id, 1); mutate('plan', () => { const t = TRIP(); P.trip = {...(P.trip || {}), title:t.title, sub:t.sub, hello:t.hello, short:t.short, cities:l}; [...P.wish, ...P.days.flatMap(d => d.items)].forEach(i => { if (i.city === nm) i.city = '其他'; }); }); } break; }
+    case 'cityreset': if (confirm('把城市清單恢復成「大阪、京都、奈良」嗎？')) setCities(['大阪', '京都', '奈良']); break;
+    case 'newtrip': if (confirm('確定要清空所有日子的行程和想去・想吃嗎？\n旅伴、城市、待辦、備忘不會動。') && confirm('再確認一次：清空後無法復原喔。')) newTrip(); break;
+    case 'near': openNear(); break;
+    case 'neargps': nearGps(); break;
+    case 'nearpick': { const a = AREA[+id]; nearPos = {lat:a[2], lon:a[3]}; nearTitle = a[4]; nearCityF = null; nearRefresh(); break; }
+    case 'nearcity': nearCityF = id; nearPos = null; nearTitle = ''; nearRefresh(); break;
+    case 'today': mutate('plan', () => { const f = findItem(id), d = P.days.find(x => x.n === +D.day); if (!f || !d) return; f.list.splice(f.i, 1); d.items.push(f.it); }).then(() => toast(`已排進第${NUM[+D.day - 1]}天`)); break;
+    case 'memberadd': textModal('新增旅伴', [{label:'名字', value:''}], v => { setTimeout(() => mutate('plan', () => { ensureColors(); P.members.push({id:uid(), name:v[0], c:nextColor()}); }).then(() => toast(`已新增旅伴：${v[0]}`)), 0); return null; }); break;
+    case 'memberdel': { const m = P.members.find(x => x.id === id); if (!m) break; if (P.members.length <= 1){ toast('至少要留一位旅伴'); break; }
+      if (confirm(`確定要刪除旅伴「${m.name}」嗎？\n他在各行程項目的標記也會一起移除。`)) mutate('plan', () => { ensureColors(); P.members = P.members.filter(x => x.id !== id); [...P.days.flatMap(d => d.items), ...P.wish].forEach(i => { i.who = i.who.filter(w => w !== id); }); }); break; }
     case 'font': big = !big; localStorage.setItem('okt-big', big?'1':'0'); document.documentElement.classList.toggle('big', big); render(); break;
     case 'snow': snowToggle(!snowOn); render(); break;
     case 'wspeed': wSpeed = +id; saveWS(); render(); { const t = WSPEED[wSpeed]; toast(t.m ? `小人走路：${t.n}` : '小人站著不動'); } break;
-    case 'wchar': { const k = +id; if (!wOn.includes(k) && wOn.length >= WMAX){ toast(`最多同時 ${WMAX} 位，先取消一位再選`); break; } wOn = wOn.includes(k) ? wOn.filter(x => x !== k) : wOn.concat(k); saveWS(); walkInit(); render(); toast(wOn.length ? `目前有 ${wOn.length} 位小人` : '小人都回家休息了'); break; }
+    case 'wchar': { const k = +id; if (!wOn.includes(k) && wOn.length >= WMAX){ toast(`最多同時 ${WMAX} 位，先取消一位再選`); break; } wOn = wOn.includes(k) ? wOn.filter(x => x !== k) : wOn.concat(k); wOnSaved = true; saveWS(); walkInit(); render(); toast(wOn.length ? `目前有 ${wOn.length} 位小人` : '小人都回家休息了'); break; }
+    case 'wreset': wOnSaved = false; wOn = WDEF[seasonKey()].slice(); saveWS(); walkInit(); render(); toast('已恢復成這個季節的預設小人'); break;
     case 'wcolor': wColor = +id; saveWS(); applyWColor(); render(); break;
+    case 'season': SPREF = id; localStorage.setItem('okt-season', SPREF); applySeason(); applyWColor(); snowRestart(); if (!wOnSaved){ wOn = WDEF[seasonKey()].slice(); walkInit(); } document.body.classList.toggle('calm', !snowOn); if (isXmas()){ if (snowOn){ santaSchedule(); } } else santaStop(); render(); toast(`已換成${SE().e} ${SE().n}天主題`); break;
     case 'tree': { treeJig(); const r = b.getBoundingClientRect(); burstGifts(r.left + r.width / 2, r.top + 24, 9); toast(prize()); break; }
-    case 'santa': if (santaEl) toast('聖誕老人已經在路上了 🎅'); else santaFly(true); break;
+    case 'santa':
+      if (isXmas()){ if (santaEl) toast('聖誕老人已經在路上了 🎅'); else santaFly(true); }
+      else { const r = b.getBoundingClientRect(), L = SE().say; burstGifts(r.left + r.width / 2, r.top + 10, 7); toast(L[Math.floor(Math.random() * L.length)]); }
+      break;
     case 'editmode': edit = !edit; localStorage.setItem('okt-edit', edit?'1':'0'); render(); break;
     case 'jump': $(id)?.scrollIntoView({behavior:'smooth', block:'start'}); break;
-    case 'map': window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(findItem(id).it.map), '_blank'); break;
+    case 'map': { const q = (findItem(id) || {it:{map:''}}).it.map; window.open(/^https?:\/\//i.test(q) ? q : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q), '_blank'); break; }
     case 'view': openViewer(id); break;
     case 'vclose': closeViewer(); break;
     case 'add': openEdit(null, +D.day); break;
@@ -723,41 +1083,59 @@ document.addEventListener('click', async e => {
     case 'memoadd': textModal('新增備忘', [{label:'標題', value:''},{label:'內容', value:'', area:true}], v => { MM.push({id:uid(), title:v[0], body:v[1]}); return 'memos'; }); break;
     case 'memoedit': { const m = MM.find(x => x.id === id); textModal('編輯備忘', [{label:'標題', value:m.title},{label:'內容', value:m.body, area:true}], v => { m.title = v[0]; m.body = v[1]; return 'memos'; }); break; }
     case 'memodel': { const m = MM.find(x => x.id === id); if (confirm(`確定要刪除「${m.title}」嗎？`)) mutate('memos', () => { MM = MM.filter(x => x.id !== id); }); break; }
-    case 'rename': { const m = P.members.find(x => x.id === id); textModal('旅伴名稱', [{label:'名字', value:m.name}], v => { m.name = v[0]; return 'plan'; }); break; }
+    case 'rename': { const m = P.members.find(x => x.id === id); textModal('旅伴名稱', [{label:'名字', value:m.name}], v => { ensureColors(); m.name = v[0]; return 'plan'; }); break; }
   }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'newtodo') document.querySelector('[data-act="todoadd"]').click(); });
 
-/* ============ 下雪 ============ */
+/* ============ 飄落物：雪／花瓣／螢火蟲／楓葉 ============ */
 const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const snowPref = localStorage.getItem('okt-snow');
 let snowOn = snowPref ? snowPref === '1' : !reduceMotion;
 const snowCv = document.createElement('canvas'); snowCv.id = 'snow'; document.body.appendChild(snowCv);
 const sg = snowCv.getContext('2d');
 let sW = 0, sH = 0, flakes = [], sRaf = 0, sT = 0;
+const FALL = {snow:{r:[1.5, 4.7], v:[.35, 1.25]}, petal:{r:[3, 6.5], v:[.3, .9]}, leaf:{r:[4, 7.5], v:[.45, 1.2]}, firefly:{r:[1.4, 3.4], v:[.1, .35]}};
+function mkFlake(){ const f = FALL[SE().fall]; return {x:Math.random()*sW, y:Math.random()*sH, r:f.r[0]+Math.random()*(f.r[1]-f.r[0]), v:f.v[0]+Math.random()*(f.v[1]-f.v[0]), ph:Math.random()*6.28, sw:.3+Math.random()*.7, rot:Math.random()*6.28, vr:(Math.random()-.5)*.05, h:Math.random()}; }
 function snowSize(){
   const d = Math.min(window.devicePixelRatio || 1, 2);
   sW = innerWidth; sH = innerHeight; snowCv.width = sW * d; snowCv.height = sH * d; sg.setTransform(d,0,0,d,0,0);
-  const n = Math.min(70, Math.round(sW / 9));
-  while (flakes.length < n) flakes.push({x:Math.random()*sW, y:Math.random()*sH, r:1.5+Math.random()*3.2, v:.35+Math.random()*.9, ph:Math.random()*6.28, sw:.3+Math.random()*.7});
+  const n = Math.min(SE().fall === 'firefly' ? 34 : 60, Math.round(sW / (SE().fall === 'firefly' ? 11 : 10)));
+  while (flakes.length < n) flakes.push(mkFlake());
   flakes.length = n;
 }
+const LEAFC = ['#E8561E', '#F28A2E', '#C5391B', '#F2B134'];
+function drawPetal(f){ sg.save(); sg.translate(f.x, f.y); sg.rotate(f.rot); sg.fillStyle = f.h < .5 ? '#FFC2D4' : '#FFE0EA'; sg.strokeStyle = 'rgba(214,69,107,.55)'; sg.lineWidth = 1;
+  sg.beginPath(); sg.moveTo(0, -f.r); sg.bezierCurveTo(f.r * 1.1, -f.r * .6, f.r * .8, f.r * .8, 0, f.r); sg.bezierCurveTo(-f.r * .8, f.r * .8, -f.r * 1.1, -f.r * .6, 0, -f.r); sg.fill(); sg.stroke(); sg.restore(); }
+function drawLeaf(f){ sg.save(); sg.translate(f.x, f.y); sg.rotate(f.rot); sg.fillStyle = LEAFC[Math.floor(f.h * 4) % 4]; sg.strokeStyle = 'rgba(120,50,20,.6)'; sg.lineWidth = 1;
+  sg.beginPath(); for (let k = 0; k < 10; k++){ const a = k * Math.PI / 5, r = k % 2 ? f.r * .5 : f.r; sg.lineTo(Math.sin(a) * r, -Math.cos(a) * r); } sg.closePath(); sg.fill(); sg.stroke(); sg.restore(); }
 function snowFrame(){
-  sg.clearRect(0,0,sW,sH); sT += .015;
-  sg.fillStyle = 'rgba(255,255,255,.96)'; sg.strokeStyle = 'rgba(110,140,175,.55)'; sg.lineWidth = 1;
+  sg.clearRect(0,0,sW,sH); sT += .015; const kind = SE().fall;
   for (const f of flakes){
-    f.y += f.v * (f.r / 3 + .5); f.x += Math.sin(sT * f.sw + f.ph) * .45;
-    if (f.y > sH + 6){ f.y = -6; f.x = Math.random() * sW; }
-    if (f.x < -6) f.x = sW + 6;
-    if (f.x > sW + 6) f.x = -6;
-    sg.beginPath(); sg.arc(f.x, f.y, f.r, 0, 6.283); sg.fill(); sg.stroke();
+    if (kind === 'firefly'){
+      f.x += Math.sin(sT * f.sw * 1.6 + f.ph) * .5; f.y += Math.cos(sT * f.sw * 1.2 + f.ph * 2) * .4 - f.v * .35;
+      if (f.y < -8) f.y = sH + 8; if (f.y > sH + 8) f.y = -8; if (f.x < -8) f.x = sW + 8; if (f.x > sW + 8) f.x = -8;
+      const tw = .45 + .55 * Math.sin(sT * 2.2 + f.ph * 3), g = sg.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 4.2);
+      g.addColorStop(0, `rgba(255,236,120,${.85 * tw})`); g.addColorStop(1, 'rgba(255,236,120,0)');
+      sg.fillStyle = g; sg.beginPath(); sg.arc(f.x, f.y, f.r * 4.2, 0, 6.283); sg.fill();
+      sg.fillStyle = `rgba(255,250,200,${tw})`; sg.beginPath(); sg.arc(f.x, f.y, f.r * .75, 0, 6.283); sg.fill();
+      continue;
+    }
+    f.y += f.v * (f.r / 3 + .5); f.x += Math.sin(sT * f.sw + f.ph) * (kind === 'snow' ? .45 : .8); f.rot += f.vr * (kind === 'snow' ? 0 : 1);
+    if (f.y > sH + 10){ f.y = -10; f.x = Math.random() * sW; }
+    if (f.x < -10) f.x = sW + 10;
+    if (f.x > sW + 10) f.x = -10;
+    if (kind === 'petal') drawPetal(f);
+    else if (kind === 'leaf') drawLeaf(f);
+    else { sg.fillStyle = 'rgba(255,255,255,.96)'; sg.strokeStyle = 'rgba(110,140,175,.55)'; sg.lineWidth = 1; sg.beginPath(); sg.arc(f.x, f.y, f.r, 0, 6.283); sg.fill(); sg.stroke(); }
   }
   sRaf = requestAnimationFrame(snowFrame);
 }
+function snowRestart(){ cancelAnimationFrame(sRaf); sg.clearRect(0,0,sW,sH); flakes = []; if (snowOn){ snowSize(); snowFrame(); } }
 function snowToggle(on){
   snowOn = on; localStorage.setItem('okt-snow', on ? '1' : '0');
   cancelAnimationFrame(sRaf); sg.clearRect(0,0,sW,sH);
-  if (on){ snowSize(); snowFrame(); setTimeout(() => santaFly(), 2500); santaSchedule(); } else santaStop();
+  if (on){ snowSize(); snowFrame(); if (isXmas()){ setTimeout(() => santaFly(), 2500); santaSchedule(); } } else santaStop();
   document.body.classList.toggle('calm', !on);
 }
 addEventListener('resize', () => { if (snowOn) snowSize(); });
@@ -765,7 +1143,9 @@ if (snowOn){ snowSize(); snowFrame(); }
 
 /* ============ 聖誕老人（偶爾飛過）============ */
 let santaEl = null, santaTimer = 0;
+const isXmas = () => seasonKey() === 'winter';
 function santaFly(force){
+  if (!isXmas() && !force) return;
   if (santaEl || (!force && (!snowOn || document.hidden))) return;
   const el = document.createElement('div'); el.id = 'santa';
   el.innerHTML = `<span class="ho hand">Ho Ho Ho!</span><div class="bob">${SANTA_SVG}</div>`;
@@ -779,7 +1159,7 @@ function santaFly(force){
 function santaSchedule(){ clearTimeout(santaTimer); santaTimer = setTimeout(() => { santaFly(); santaSchedule(); }, 28000 + Math.random() * 30000); }
 function santaStop(){ clearTimeout(santaTimer); if (santaEl){ santaEl.remove(); santaEl = null; } }
 document.body.classList.toggle('calm', !snowOn);
-if (snowOn){ setTimeout(() => santaFly(), 5000); santaSchedule(); }
+if (snowOn && isXmas()){ setTimeout(() => santaFly(), 5000); santaSchedule(); }
 
 /* ============ 聖誕樹與禮物 ============ */
 const GCOL = ['#D9482B','#F5A623','#2C9BD6','#2FA67A','#A767D6'];
@@ -857,29 +1237,40 @@ const CAST = [
 ];
 const WSPEED = [{n:'不動', m:0}, {n:'很慢', m:.5}, {n:'慢', m:1}, {n:'中', m:1.8}, {n:'快', m:3}];
 const WCOL = [{n:'紅', a:'#FF9482', b:'#D3382F'}, {n:'藍', a:'#96D3F8', b:'#2E8FD6'}, {n:'紫', a:'#D5B2F4', b:'#8A58CF'}, {n:'粉', a:'#FFB6D0', b:'#E8508A'}, {n:'金', a:'#FFEE9E', b:'#F2A21E'}];
+const WDEF = {spring:[6, 4, 5, 2], summer:[4, 6, 5, 2], autumn:[2, 6, 5, 4], winter:[0, 1, 2, 3]};
 const WNAME = ['小精靈（紅帽）', '小精靈（綠帽）', '麋鹿', '雪人', '企鵝', '薑餅人', '北極熊', '小聖誕老人'];
 const WMAX = 5;
 let WS = {}; try { WS = JSON.parse(localStorage.getItem('okt-walk')) || {}; } catch(e){}
 let wSpeed = Number.isInteger(WS.speed) && WSPEED[WS.speed] ? WS.speed : 2;
-let wOn = Array.isArray(WS.on) ? WS.on.filter(i => Number.isInteger(i) && i >= 0 && i < WNAME.length).slice(0, WMAX) : [0, 1, 2, 3];
-let wColor = Number.isInteger(WS.color) && WCOL[WS.color] ? WS.color : 0;
-const saveWS = () => localStorage.setItem('okt-walk', JSON.stringify({speed:wSpeed, on:wOn, color:wColor}));
-function applyWColor(){ document.documentElement.style.setProperty('--a1', WCOL[wColor].a); document.documentElement.style.setProperty('--a2', WCOL[wColor].b); }
+let wOnSaved = Array.isArray(WS.on);
+let wOn = wOnSaved ? WS.on.filter(i => Number.isInteger(i) && i >= 0 && i < WNAME.length).slice(0, WMAX) : WDEF[seasonKey()].slice();
+let wColor = WS.color === -1 ? -1 : (Number.isInteger(WS.color) && WCOL[WS.color] ? WS.color : -1);
+const saveWS = () => localStorage.setItem('okt-walk', JSON.stringify({speed:wSpeed, on:(wOnSaved ? wOn : undefined), color:wColor}));
+const THEMEACC = {spring:['#FFC2D4', '#E8508A'], summer:['#9BE3F0', '#1AA3C2'], autumn:['#FFB36B', '#C5391B'], winter:['#FF9482', '#D3382F']};
+function applyWColor(){ const c = wColor === -1 ? THEMEACC[seasonKey()] : [WCOL[wColor].a, WCOL[wColor].b]; document.documentElement.style.setProperty('--a1', c[0]); document.documentElement.style.setProperty('--a2', c[1]); }
 applyWColor();
+function seasonSettings(){
+  const cur = seasonKey();
+  return `<h2 class="round" style="font-size:1.1rem;margin-top:24px">季節主題</h2>
+    <div class="small">換整個網頁的顏色、插畫和飄落的東西。只改這支手機，不影響別人。</div>
+    <div class="pick" style="margin-top:8px"><button class="chip pk ${SPREF === 'auto' ? 'on' : ''}" data-act="season" data-id="auto">自動（跟著今天的季節）</button></div>
+    <div class="pick" style="margin-top:8px">${SORDER.map(k => `<button class="chip pk ${SPREF === k ? 'on' : ''}" data-act="season" data-id="${k}"><span class="dot" style="background:${SEASONS[k].v['--org']};width:1em;height:1em"></span> ${SEASONS[k].e} ${SEASONS[k].n}</button>`).join('')}</div>
+    <div class="small" style="margin-top:6px">現在：${SEASONS[cur].e} ${SEASONS[cur].n}${SPREF === 'auto' ? '（自動）' : ''}</div>`;
+}
 function walkerSettings(){
   return `<h2 class="round" style="font-size:1.1rem;margin-top:24px">小人設定</h2>
     <div class="small">調整選單上走路的小人。只改這支手機，不影響別人。</div>
     <label>走路速度</label><div class="pick">${WSPEED.map((v, k) => `<button class="chip pk ${wSpeed === k ? 'on' : ''}" data-act="wspeed" data-id="${k}">${v.n}</button>`).join('')}</div>
-    <label>想看到誰（最多 ${WMAX} 位，點一下選取或取消）</label><div class="pick">${WNAME.map((n, k) => `<button class="chip pk ${wOn.includes(k) ? 'on' : ''}" data-act="wchar" data-id="${k}">${n}</button>`).join('')}</div>
-    <label>帽子與衣服的顏色</label><div class="pick">${WCOL.map((c, k) => `<button class="chip pk ${wColor === k ? 'on' : ''}" data-act="wcolor" data-id="${k}"><span class="dot" style="background:${c.b};width:1em;height:1em"></span> ${c.n}</button>`).join('')}</div>`;
+    <label>想看到誰（最多 ${WMAX} 位，點一下選取或取消）${wOnSaved ? ' <a data-act="wreset" style="color:var(--red);text-decoration:underline;cursor:pointer;font-weight:700">恢復預設</a>' : ''}</label><div class="pick">${WNAME.map((n, k) => `<button class="chip pk ${wOn.includes(k) ? 'on' : ''}" data-act="wchar" data-id="${k}">${n}</button>`).join('')}</div>
+    <label>帽子與衣服的顏色</label><div class="pick"><button class="chip pk ${wColor === -1 ? 'on' : ''}" data-act="wcolor" data-id="-1">跟著主題</button>${WCOL.map((c, k) => `<button class="chip pk ${wColor === k ? 'on' : ''}" data-act="wcolor" data-id="${k}"><span class="dot" style="background:${c.b};width:1em;height:1em"></span> ${c.n}</button>`).join('')}</div>`;
 }
 let wks = [], wkBub = null, wkBubT = 0, wkLast = 0, wkClicks = 0;
 function chat(w){
   const n = P.members.length ? P.members[Math.floor(Math.random() * P.members.length)].name : '你';
-  const common = [`${n}，今天走了幾步呢？👟`, `${n}，要不要來杯熱飲？☕`, `${n}，笑一個！😊`, '天氣冷，記得多穿一件！🧣', '歡迎來京都～ ⛩️'];
+  const common = [`${n}，今天走了幾步呢？👟`, `${n}，笑一個！😊`, `${TRIP().hello}～ ⛩️`, ...SE().say];
   const r = Math.random();
   if (r < .4) return w.cast.say[Math.floor(Math.random() * w.cast.say.length)];
-  if (r < .7) return prize();
+  if (r < .7) return isXmas() ? prize() : prize().replace(/聖誕老人說：/, '').replace('今天的雪景超適合拍照 ✨', '今天的風景超適合拍照 ✨');
   return common[Math.floor(Math.random() * common.length)];
 }
 function walkerSay(w, msg, ms = 2800){
@@ -947,11 +1338,13 @@ function walkInit(){
     wks.push(w);
   });
 }
+applySeason(); applyWColor();
 walkInit(); requestAnimationFrame(walkFrame);
-if (!localStorage.getItem('okt-tip2')){ localStorage.setItem('okt-tip2', '1'); setTimeout(() => toast('點選單上的小人，他們會說話喔 🎅'), 4000); }
+if (!localStorage.getItem('okt-tip2')){ localStorage.setItem('okt-tip2', '1'); setTimeout(() => { if (!$('modal').classList.contains('show')) toast(`點選單上的小人，他們會說話喔 ${SE().e}`); }, 4000); }
 
 /* ============ 啟動 ============ */
 if (!applyCache()){ const s = seed(); P = s.plan; TD = s.todos; MM = s.memos; norm(); }
+applySeason();
 render();
 const td = P.days.find(d => d.date === todayStr());
 if (td) setTimeout(() => $('day-' + td.n)?.scrollIntoView({block:'start'}), 80);
